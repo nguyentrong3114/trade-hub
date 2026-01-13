@@ -1,0 +1,731 @@
+{
+  "header": {
+    "contact": {
+      "email": "contact@tradehub.com",
+      "phone": "+356 836 2335"
+    },
+    "social": {
+      "twitter": "https://x.com/tradehub",
+      "facebook": "https://facebook.com/tradehub",
+      "rss": "https://rss.com/tradehub"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "plans": "Plans",
+    "products": "Products",
+    "comingSoon": "Coming Soon",
+    "contact": "Contact",
+    "login": "Login",
+    "cart": "Cart",
+    "profile": "Profile",
+    "orders": "Orders",
+    "logout": "Logout",
+    "emptyCart": "Your cart is empty",
+    "quantity": "Quantity",
+    "viewCart": "View Cart",
+    "auction": "Auction",
+    "blog": "Blog",
+    "clients": "Clients",
+    "market": "Market"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "emptyCart": "Your cart is empty",
+    "emptyCartDescription": "You don't have any items in your cart. Start shopping now!",
+    "startShopping": "Start Shopping",
+    "continueShopping": "Continue Shopping",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkout": "Checkout",
+    "quantity": "Quantity"
+  },
+  "Home": {
+    "title": "Hello",
+    "hero": {
+      "title": "Smart Trading Platform",
+      "description": "Discover the world of trading with cutting-edge technology. Manage your investment portfolio efficiently and securely.",
+      "cta": {
+        "primary": "Get Started",
+        "secondary": "Learn More"
+      }
+    },
+    "features": {
+      "badge": "✨ Key Features",
+      "title": "Key Features",
+      "subtitle": "Everything you need to trade successfully",
+      "exploreMore": "Learn More about all of TradeHub's Features",
+      "item1": {
+        "title": "Fast Trading",
+        "description": "Execute trades in seconds with high-speed technology"
+      },
+      "item2": {
+        "title": "High Security",
+        "description": "Your data is encrypted and protected with industry-leading security"
+      },
+      "item3": {
+        "title": "Smart Analytics",
+        "description": "Get detailed insights and market analysis to make the best decisions"
+      },
+      "item4": {
+        "title": "24/7 Support",
+        "description": "Professional support team always ready to help you anytime"
+      },
+      "item5": {
+        "title": "User-Friendly Interface",
+        "description": "Intuitive and easy-to-use design, perfect for beginners"
+      },
+      "item6": {
+        "title": "Detailed Reports",
+        "description": "Track investment performance with comprehensive reports and analysis"
+      }
+    },
+    "clients": {
+      "badge": "PARTNERS",
+      "title": "Our Partners",
+      "subtitle": "We are proud to partner with leading companies across various industries. Together, we create sustainable value and success.",
+      "viewMore": "View More",
+      "cta": {
+        "title": "Become Our Partner",
+        "description": "Let's work together to create sustainable value and success for the future.",
+        "button": "Contact Us",
+        "learnMore": "Learn More"
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Join thousands of traders using TradeHub",
+      "button": "Sign Up Now"
+    },
+    "faq": {
+      "title": "Questions answered",
+      "subtitle": "We're here to help you and solve objections. Find answers to the most common questions below.",
+      "ctaButton": "Contact Sales Now",
+      "contactText": "Feel free to mail us for any enquiries:",
+      "contactEmail": "contact@tradehub.com"
+    },
+    "comingSoon": {
+      "heading1": "Next-Gen Automation",
+      "heading2": "Soon!",
+      "subtitle": "AI is changing how work gets done. Join our early access list and discover how automation can free up your time and drive real results.",
+      "days": "days",
+      "hours": "hours",
+      "minutes": "minutes",
+      "seconds": "seconds",
+      "emailPlaceholder": "your@email.com",
+      "ctaButton": "Get Notified",
+      "socialProof": "Trusted by 10k+ Audience worldwide"
+    },
+    "footer": {
+      "copyright": "© 2024 TradeHub. All rights reserved.",
+      "about": {
+        "title": "About Us",
+        "description": "Leading smart trading platform, helping you manage investments efficiently and securely."
+      },
+      "quickLinks": {
+        "title": "Quick Links",
+        "home": "Home",
+        "about": "About",
+        "services": "Services",
+        "products": "Products",
+        "contact": "Contact",
+        "terms": "Terms"
+      },
+      "contact": {
+        "title": "Contact",
+        "email": "Email",
+        "phone": "Phone",
+        "address": "Address"
+      },
+      "followUs": {
+        "title": "Follow Us"
+      }
+    }
+  },
+  "clientNavbar": {
+    "about": "About",
+    "blog": "Blog",
+    "leaders": "Leadership",
+    "testimonials": "Reviews",
+    "recruitment": "Careers",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "contactNow": "Contact Now"
+  },
+  "clientBlog": {
+    "title": "Blog & News",
+    "subtitle": "Latest news and articles from {company}",
+    "readMore": "Read more",
+    "viewAll": "View all posts"
+  },
+  "about": {
+    "hero": {
+      "badge": "The TradeHub journey",
+      "title": "From a small startup to a leading trading platform",
+      "description": "We build a modern, secure and transparent trading experience, helping users make better decisions with data and intuitive tools.",
+      "ctaJourney": "View our journey",
+      "ctaValues": "Core values"
+    },
+    "warnings": {
+      "title": "Eliminate the bottlenecks\nthat hold your team back",
+      "card1": "Teams spend too much time on repetitive tasks.",
+      "card2": "Leads slip away without consistent follow-up.",
+      "card3": "Outdated workflows hurt customer experience.",
+      "card4": "Scaling requires more people and higher costs."
+    },
+    "highlights": {
+      "item1": {
+        "title": "500K+",
+        "subtitle": "Global users",
+        "description": "Trusted by traders across multiple markets"
+      },
+      "item2": {
+        "title": "120+",
+        "subtitle": "Countries & regions",
+        "description": "Multilingual infrastructure ready to scale"
+      },
+      "item3": {
+        "title": "99.9%",
+        "subtitle": "Platform uptime",
+        "description": "Cloud-native architecture and distributed systems"
+      }
+    },
+    "steps": {
+      "item1": {
+        "title": "Vision",
+        "description": "Build the next-generation trading platform that is seamless and reliable."
+      },
+      "item2": {
+        "title": "Mission",
+        "description": "Empower traders with data, tools and community."
+      },
+      "item3": {
+        "title": "Roadmap",
+        "description": "Expand products, standardize experience and accelerate feature delivery."
+      }
+    },
+    "values": {
+      "badge": "Values",
+      "title": "What we believe in",
+      "subtitle": "The principles that shape our product, our team, and how we serve our users.",
+      "item1": {
+        "title": "Transparency",
+        "description": "Clear information flows, updated in real time."
+      },
+      "item2": {
+        "title": "Security",
+        "description": "Multi-layer security, risk controls and continuous monitoring."
+      },
+      "item3": {
+        "title": "User-centric",
+        "description": "Product design driven by behavior data and real feedback."
+      },
+      "item4": {
+        "title": "Continuous innovation",
+        "description": "AI, automation and big data to elevate the trading experience."
+      }
+    },
+    "timeline": {
+      "title": "Our Journey",
+      "subtitle": "Discover the important milestones in our journey of building and development",
+      "item1": {
+        "year": "2018",
+        "title": "Company Founded",
+        "description": "TradeHub was founded with a mission to revolutionize the online trading industry. We started with a small but passionate team."
+      },
+      "item2": {
+        "year": "2019",
+        "title": "First Platform Launch",
+        "description": "Released the beta version of our trading platform, attracting over 1,000 first users in the first month."
+      },
+      "item3": {
+        "year": "2020",
+        "title": "Technology Award",
+        "description": "Received the 'Innovation Technology of the Year' award from Vietnam Technology Association. Reached 10,000 users milestone."
+      },
+      "item4": {
+        "year": "2021",
+        "title": "International Expansion",
+        "description": "Expanded services to international markets, supporting multiple languages and multi-currency payments. Reached 50,000 global users."
+      },
+      "item5": {
+        "year": "2022",
+        "title": "Rapid Growth",
+        "description": "Launched AI and machine learning features, grew 300% compared to the previous year. Reached 100,000 users."
+      },
+      "item6": {
+        "year": "2023-2024",
+        "title": "Industry Leader",
+        "description": "Became the leading trading platform with over 500,000 users. Continuously innovating and improving services."
+      }
+    },
+    "newPage": {
+      "hero": {
+        "badge": "About Us",
+        "title": "Connecting",
+        "titleGradient": "Global Commerce",
+        "subtitle": "Leading B2B platform helping Vietnamese businesses reach the world",
+        "ctaContact": "Contact Now",
+        "ctaVideo": "Watch Intro Video"
+      },
+      "stats": {
+        "partners": "Global Partners",
+        "countries": "Countries",
+        "transactions": "Successful Transactions",
+        "satisfaction": "Customer Satisfaction"
+      },
+      "story": {
+        "badge": "Our Story",
+        "title": "Building bridges for",
+        "titleGray": "international trade",
+        "desc1": "TradeHub was born from the belief that every business, big or small, deserves the opportunity to access global markets. In an increasingly connected world, we recognized that Vietnamese businesses have tremendous potential but often face challenges in finding suitable international partners and building sustainable trade relationships.",
+        "desc2": "We are not just a platform - we are a partner, supporting Vietnamese businesses from the first step to success in international markets. With an experienced team of experts and advanced technology, TradeHub provides comprehensive solutions from strategic consulting, partner connections, to transaction execution support.",
+        "desc3": "Over the past 6 years, we have helped thousands of businesses expand their markets, increase revenue, and build international brands. Each partner's success motivates us to continuously improve and develop.",
+        "desc4": "We believe that international trade is not just about transactions, but about building long-term relationships and creating value for both parties. That's why we always prioritize quality and partner satisfaction in everything we do.",
+        "cta": "Explore Partners",
+        "quote": "Our mission is to eliminate trade barriers and create opportunities for every business.",
+        "founder": "Founder",
+        "company": "TradeHub"
+      },
+      "mission": {
+        "badge": "Mission & Vision",
+        "title": "Shaping the Future",
+        "missionTitle": "Our Mission",
+        "missionDesc": "TradeHub is committed to being a trusted bridge between Vietnamese businesses and global markets. We don't just provide tools and platforms, but also accompany businesses in every step of their internationalization journey. Our mission is to empower every business, regardless of size, to compete fairly and succeed on the international stage.",
+        "visionTitle": "Vision 2030",
+        "visionDesc": "By 2030, TradeHub will become the leading B2B platform in Southeast Asia, connecting over 10,000 Vietnamese businesses with global markets. We envision a future where every business can easily access international trade opportunities, where language, cultural, and geographical barriers are no longer obstacles. We want to create a digital trade ecosystem where transparency, fairness, and sustainable development are core values.",
+        "goalsTitle": "Strategic Goals",
+        "goal1": "Expand partner network to 1,000+ international companies by 2026",
+        "goal2": "Support 5,000+ Vietnamese businesses to export successfully",
+        "goal3": "Build AI technology platform to optimize connections and transactions",
+        "goal4": "Establish offices in 10 Asia-Pacific countries"
+      },
+      "services": {
+        "badge": "Our Services",
+        "title": "Comprehensive Solutions",
+        "subtitle": "From consulting to execution, we support you at every stage",
+        "service1": {
+          "title": "International Partner Connections",
+          "desc": "We have an extensive global partner network that helps you find and connect with the most suitable companies. Our AI system analyzes needs, capabilities, and goals of both parties to create valuable and sustainable connections. We don't just introduce partners, but also support in negotiation and relationship building processes."
+        },
+        "service2": {
+          "title": "Export Strategy Consulting",
+          "desc": "Our team of experts has over 20 years of experience in international trade. We provide comprehensive consulting services from market analysis, product evaluation, marketing strategy development, to international compliance support. Each plan is customized to fit your industry's characteristics and business goals."
+        },
+        "service3": {
+          "title": "B2B Auction Platform",
+          "desc": "Launched in 2022, TradeHub's B2B auction platform has revolutionized how businesses buy and sell goods and services. With blockchain and AI technology, we ensure transparency, security, and efficiency in every transaction. Over 10,000 transactions have been successfully completed with a total value of over $500 million."
+        },
+        "service4": {
+          "title": "Logistics & Payment Support",
+          "desc": "We partner with leading logistics providers to offer optimal shipping solutions at competitive costs. Our multi-currency payment system supports over 50 currencies, allowing you to trade easily with partners from any country. We also provide insurance and payment protection to ensure safety for every transaction."
+        },
+        "service5": {
+          "title": "Training & Capacity Development",
+          "desc": "We regularly organize training courses on international trade, negotiation skills, supply chain management, and many other topics. Training programs are designed by leading experts and continuously updated according to market trends. We also provide 1-on-1 consulting and capacity development support for your team."
+        },
+        "service6": {
+          "title": "Data Analytics & Reporting",
+          "desc": "With Big Data and AI technology, we provide detailed analytical reports on markets, trends, opportunities, and risks. Data is updated in real-time to help you make quick and accurate decisions. Customizable dashboards allow you to track performance, manage partner relationships, and optimize business operations."
+        }
+      },
+      "technology": {
+        "badge": "Technology",
+        "title": "Advanced Technology Platform",
+        "subtitle": "The power of modern technology serving international trade",
+        "tech1": {
+          "title": "Artificial Intelligence (AI)",
+          "desc": "We use AI to analyze market data, predict trends, optimize partner connections, and automate processes. Our AI system learns from each transaction to become increasingly intelligent and accurate. This helps us provide the most suitable recommendations for each business."
+        },
+        "tech2": {
+          "title": "Blockchain & Security",
+          "desc": "Every transaction on the TradeHub platform is recorded on blockchain, ensuring transparency and immutability. We use end-to-end encryption and multi-layer security measures to protect your information. The system has been tested and certified by leading international security organizations."
+        },
+        "tech3": {
+          "title": "Cloud Computing",
+          "desc": "Our platform is built on cloud infrastructure, ensuring flexible scalability and 99.9% uptime. Whether you have 10 or 10,000 simultaneous transactions, the system still operates smoothly and stably. We use multi-region deployment to ensure fast access speeds from anywhere in the world."
+        },
+        "tech4": {
+          "title": "Mobile-First Design",
+          "desc": "Recognizing that most modern users use mobile devices, we designed the platform with a mobile-first approach. Our mobile app provides full features like the web version, allowing you to manage transactions, connect partners, and track performance anytime, anywhere."
+        }
+      },
+      "culture": {
+        "badge": "Company Culture",
+        "title": "Work Environment",
+        "subtitle": "Where talent grows and innovation is encouraged",
+        "desc1": "At TradeHub, we believe that people are the most valuable asset. We build a work environment where every employee is respected, heard, and empowered to reach their full potential. We encourage diversity, inclusion, and collaboration across departments.",
+        "desc2": "We heavily invest in talent development through training programs, mentoring, and advancement opportunities. Our employees are encouraged to learn, experiment, and innovate. We believe the best ideas come from empowering everyone.",
+        "desc3": "Work-life balance is one of our core values. We provide flexible working hours, remote work options, and wellness programs to ensure employees are always healthy and happy both physically and mentally.",
+        "benefits": {
+          "title": "Benefits & Perks",
+          "item1": "Competitive salary and performance bonuses",
+          "item2": "Comprehensive health insurance for the whole family",
+          "item3": "Training and career development programs",
+          "item4": "Flexible working hours and remote work",
+          "item5": "Team building and cultural activities",
+          "item6": "Career advancement and development opportunities"
+        }
+      },
+      "timeline": {
+        "badge": "Development Journey",
+        "title": "Key Milestones",
+        "milestone1": {
+          "year": "2018",
+          "title": "Beginning",
+          "desc": "TradeHub was founded with the mission to connect businesses"
+        },
+        "milestone2": {
+          "year": "2020",
+          "title": "Expansion",
+          "desc": "Reached 20+ countries in Asia-Pacific"
+        },
+        "milestone3": {
+          "year": "2022",
+          "title": "Breakthrough",
+          "desc": "Launched the first B2B auction platform"
+        },
+        "milestone4": {
+          "year": "2024",
+          "title": "Global",
+          "desc": "Present in 50+ countries with 500+ partners"
+        }
+      },
+      "team": {
+        "badge": "Leadership Team",
+        "title": "The Leaders",
+        "member1": {
+          "name": "Nguyen Van A",
+          "role": "CEO & Founder",
+          "quote": "We believe in the power of global connections."
+        },
+        "member2": {
+          "name": "Tran Thi B",
+          "role": "CTO",
+          "quote": "Technology is the bridge for international trade."
+        },
+        "member3": {
+          "name": "Le Van C",
+          "role": "COO",
+          "quote": "Excellence in operations makes the difference."
+        }
+      },
+      "values": {
+        "badge": "Core Values",
+        "title": "What We",
+        "titleGray": "Believe In",
+        "subtitle": "The principles that guide all of TradeHub's activities",
+        "value1": {
+          "title": "Transparency",
+          "desc": "Every transaction is clear and public. We believe in honesty in business."
+        },
+        "value2": {
+          "title": "Innovation",
+          "desc": "Continuously improving technology to deliver the best experience for partners."
+        },
+        "value3": {
+          "title": "Connection",
+          "desc": "Building a strong business community, supporting each other to grow together."
+        },
+        "value4": {
+          "title": "Commitment",
+          "desc": "Always putting partners' interests first, accompanying in all circumstances."
+        }
+      },
+      "cta": {
+        "title": "Ready to Start Your Journey?",
+        "subtitle": "Join thousands of businesses growing on TradeHub",
+        "button1": "Become a Partner",
+        "button2": "View Service Plans"
+      }
+    }
+  },
+  "chatbot": {
+    "title": "Virtual Assistant",
+    "welcome": "Hello! How can I help you?",
+    "placeholder": "Type your message...",
+    "defaultResponse": "Thank you for contacting us! We will respond as soon as possible."
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Welcome back",
+      "userTab": "User",
+      "businessTab": "Business Owner",
+      "email": "Email",
+      "password": "Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "submit": "Login",
+      "noAccount": "Don't have an account?",
+      "register": "Sign up now",
+      "companyName": "Company Name",
+      "taxCode": "Tax Code"
+    },
+    "register": {
+      "title": "Register",
+      "subtitle": "Create a new account",
+      "userTab": "User",
+      "businessTab": "Business Owner",
+      "fullName": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "phone": "Phone Number",
+      "agreeTerms": "I agree to the",
+      "terms": "Terms of Service",
+      "submit": "Register",
+      "hasAccount": "Already have an account?",
+      "login": "Login now",
+      "companyName": "Company Name",
+      "taxCode": "Tax Code",
+      "address": "Address",
+      "representative": "Representative"
+    },
+    "forgotPassword": {
+      "title": "Forgot Password",
+      "subtitle": "Reset your password",
+      "emailStep": {
+        "title": "Forgot Password",
+        "description": "Enter your email to receive verification code"
+      },
+      "otpStep": {
+        "title": "Verify OTP",
+        "description": "OTP code has been sent to",
+        "enterOtp": "Enter OTP code",
+        "resendOtp": "Resend OTP code",
+        "resendIn": "Resend code in"
+      },
+      "resetStep": {
+        "title": "Set New Password",
+        "description": "Create a new password for your account",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password"
+      },
+      "email": "Email",
+      "sendOtp": "Send OTP Code",
+      "verifyOtp": "Verify",
+      "resetPassword": "Reset Password",
+      "backToLogin": "Back to Login",
+      "backToPrevious": "Go Back",
+      "passwordStrength": {
+        "veryWeak": "Very Weak",
+        "weak": "Weak",
+        "medium": "Medium",
+        "good": "Good",
+        "strong": "Strong"
+      },
+      "errors": {
+        "invalidOtp": "Invalid or expired OTP code",
+        "passwordMismatch": "Passwords do not match",
+        "passwordTooShort": "Password must be at least 8 characters",
+        "sendOtpFailed": "Unable to send OTP code. Please try again.",
+        "resetFailed": "Unable to reset password. Please try again."
+      }
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: January 1, 2024",
+    "introduction": "Welcome to TradeHub. By accessing and using our platform, you agree to comply with the following terms and conditions. Please read carefully before using our services.",
+    "section1": {
+      "title": "1. Acceptance of Terms",
+      "content": "By accessing or using TradeHub, you acknowledge that you have read, understood, and agree to be bound by these terms. If you do not agree to any part of these terms, you may not use our services.",
+      "item1": "You must be at least 18 years old to use our services",
+      "item2": "You are responsible for maintaining the security of your account",
+      "item3": "You agree to provide accurate and up-to-date information"
+    },
+    "section2": {
+      "title": "2. Use of Services",
+      "content": "TradeHub provides a trading and investment management platform. You agree to use our services lawfully and in accordance with the following guidelines:",
+      "item1": "Do not use the service for illegal purposes",
+      "item2": "Do not attempt unauthorized access to the system",
+      "item3": "Do not share login credentials with third parties"
+    },
+    "section3": {
+      "title": "3. Security and Privacy",
+      "content": "We are committed to protecting your personal information. Your data is encrypted and protected with advanced security measures:",
+      "item1": "Personal information is encrypted during transmission",
+      "item2": "We do not share your information with third parties without consent",
+      "item3": "You have the right to access, modify, or delete your personal information"
+    },
+    "section4": {
+      "title": "4. Liability and Risks",
+      "content": "Investment trading always involves risks. You understand and accept that: (1) You are solely responsible for your investment decisions, (2) TradeHub does not guarantee profits, and (3) You may lose part or all of your invested capital. We recommend seeking advice from financial professionals before making investment decisions."
+    },
+    "section5": {
+      "title": "5. Intellectual Property",
+      "content": "All content, logos, trademarks, and other intellectual property on the TradeHub platform are the exclusive property of us or our licensors. You may not copy, distribute, or use any content without our written permission."
+    },
+    "section6": {
+      "title": "6. Changes to Terms",
+      "content": "We reserve the right to update or modify these terms at any time. Changes will take effect immediately upon posting on the website. Your continued use of the service after changes take effect constitutes acceptance of the new terms."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "If you have any questions about these Terms of Service, please contact us:",
+      "email": "Email",
+      "phone": "Phone"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: January 1, 2024",
+    "introduction": "TradeHub is committed to protecting your privacy and personal information. This Privacy Policy describes how we collect, use, store, and protect your information when you use our platform.",
+    "section1": {
+      "title": "1. Information We Collect",
+      "content": "We collect the following types of information to provide and improve our services:",
+      "item1": "Personal information: Name, email, phone number, address",
+      "item2": "Account information: Username, password (encrypted), transaction history",
+      "item3": "Technical information: IP address, browser type, device used"
+    },
+    "section2": {
+      "title": "2. How We Use Information",
+      "content": "We use the collected information for the following purposes:",
+      "item1": "To provide and maintain our services",
+      "item2": "To improve user experience and develop new features",
+      "item3": "To send important notifications about services and updates",
+      "item4": "To detect and prevent fraud, abuse, or illegal activities"
+    },
+    "section3": {
+      "title": "3. Information Sharing",
+      "content": "We do not sell or rent your personal information. We only share information in the following cases:",
+      "item1": "With your consent",
+      "item2": "With trusted service providers to operate the platform",
+      "item3": "When required by law or authorized agencies"
+    },
+    "section4": {
+      "title": "4. Data Security",
+      "content": "We use advanced security measures to protect your information, including SSL/TLS encryption, firewalls, and strict access controls. However, no method of transmission over the Internet or electronic storage is 100% secure."
+    },
+    "section5": {
+      "title": "5. Your Rights",
+      "content": "You have the right to access, modify, delete, or export your personal data at any time. You also have the right to object to the processing of your data or withdraw previously given consent."
+    },
+    "section6": {
+      "title": "6. Cookies and Tracking Technologies",
+      "content": "We use cookies and similar technologies to improve your experience, analyze how you use the platform, and provide personalized content. You can manage cookie settings in your browser."
+    },
+    "section7": {
+      "title": "7. Policy Changes",
+      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the \"Last updated\" date at the top of the page."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "If you have any questions about this Privacy Policy, please contact us:",
+      "email": "Email",
+      "phone": "Phone"
+    }
+  },
+  "contact": {
+    "objectPlaceholder": "3D Object will be added here",
+    "talkWith": "Talk with us",
+    "talkDescription": "We're here to help you. Drop us a line at",
+    "talkDescriptionEnd": "and let's make something great.",
+    "contactEmail": "contact@tradehub.com",
+    "formTitle": "Write to us.",
+    "formSubtitle": "Fill out the form and we will get back to you within 48h.",
+    "nameLabel": "Name.",
+    "namePlaceholder": "Jane Smith",
+    "emailLabel": "Email.",
+    "emailPlaceholder": "jane@email.com",
+    "messageLabel": "Your message.",
+    "messagePlaceholder": "Hi...",
+    "submitButton": "Submit",
+    "phone": "+356 836 2335",
+    "location": "Hanoi, Vietnam"
+  },
+  "blog": {
+    "title": "News & Blog",
+    "subtitle": "Stay updated with the latest news about auctions, products and experiences",
+    "backToBlog": "Back to blog",
+    "authorBio": "Auction expert with years of experience in this field.",
+    "relatedPosts": "Related Posts",
+    "comments": {
+      "title": "Comments",
+      "noComments": "No comments yet. Be the first to comment!",
+      "reply": "Reply",
+      "writeComment": "Write a comment",
+      "submit": "Post comment",
+      "placeholder": "Write your comment..."
+    }
+  },
+  "auction": {
+    "title": "Auction Products",
+    "subtitle": "Discover unique and valuable auction products. From luxury watches to artworks, participate in auctions to own special items at the best prices.",
+    "all": "All",
+    "watches": "Watches",
+    "art": "Art",
+    "cars": "Classic Cars",
+    "sortByPrice": "Sort by Price",
+    "sortByTime": "Sort by Time",
+    "sortByBids": "Sort by Bids",
+    "currentPrice": "Current Price",
+    "startingPrice": "Starting Price",
+    "bids": "bids",
+    "viewDetails": "View Details",
+    "loadMore": "Load More"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved.",
+    "goHome": "Go Home",
+    "goToBlog": "Go to Blog"
+  },
+  "hotblog": {
+    "title": "Featured Posts",
+    "subtitle": "Discover the latest and most useful articles about auctions, products and experiences",
+    "viewMore": "View More"
+  },
+  "plans": {
+    "title": "Service Plans",
+    "subtitle": "Choose the service plan that fits your needs. All plans include 24/7 support and a 30-day money-back guarantee.",
+    "popular": "Popular",
+    "monthly": "month",
+    "yearly": "year",
+    "monthlyLabel": "Bill monthly",
+    "yearlyLabel": "Bill yearly",
+    "save20": "Save 20%",
+    "yearlyNote": "Original {{original}}$/year, 20% off applied",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "additionalInfo": "All plans include:",
+    "info1": "24/7 Support",
+    "info2": "30-day Money-back Guarantee",
+    "info3": "Free Updates",
+    "plan1": {
+      "name": "Basic",
+      "description": "Perfect plan for getting started",
+      "feature1": "Up to 10 projects",
+      "feature2": "5GB storage",
+      "feature3": "Email support",
+      "feature4": "Knowledge base access",
+      "feature5": "Basic reports"
+    },
+    "plan2": {
+      "name": "Professional",
+      "description": "For small and medium businesses",
+      "feature1": "Up to 50 projects",
+      "feature2": "50GB storage",
+      "feature3": "Priority support",
+      "feature4": "API integration",
+      "feature5": "Advanced reports",
+      "feature6": "Team management"
+    },
+    "plan3": {
+      "name": "Enterprise",
+      "description": "Complete solution for large enterprises",
+      "feature1": "Unlimited projects",
+      "feature2": "Unlimited storage",
+      "feature3": "24/7 phone support",
+      "feature4": "Custom integrations",
+      "feature5": "Advanced analytics",
+      "feature6": "Advanced team management",
+      "feature7": "Dedicated training and consulting"
+    }
+  }
+}
