@@ -320,10 +320,17 @@ export default function SettingsPage() {
           <Card title="API Keys" style={{ marginBottom: 24 }}>
             <Form layout="vertical">
               <Form.Item label="API Key">
-                <Input.Password value="" readOnly />
+                <Input.Password
+                  value={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ""}
+                  readOnly
+                />
               </Form.Item>
               <Form.Item label="Secret Key">
-                <Input.Password value="" readOnly />
+                {/* Lưu ý: Không nên hiển thị Secret Key ở Client trừ khi thật sự cần thiết */}
+                <Input.Password
+                  value={process.env.STRIPE_SECRET_KEY || ""}
+                  readOnly
+                />
               </Form.Item>
               <Space>
                 <Button type="primary">Tạo key mới</Button>
