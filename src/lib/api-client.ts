@@ -15,15 +15,14 @@ export async function apiRequest(
 ): Promise<Response> {
   const { locale, headers = {}, ...fetchOptions } = options;
 
-  const defaultHeaders: HeadersInit = {
-    "Content-Type": "application/json",
-    ...headers,
-  };
 
-  // Add locale headers if provided
+  const defaultHeaders = new Headers({
+    "Content-Type": "application/json",
+  });
+
   if (locale) {
-    defaultHeaders["Accept-Language"] = locale;
-    defaultHeaders["X-Locale"] = locale;
+    defaultHeaders.set("Accept-Language", locale);
+    defaultHeaders.set("X-Locale", locale);
   }
 
   return fetch(`${BACKEND_URL}${endpoint}`, {
@@ -38,7 +37,7 @@ export async function apiRequestJson<T = unknown>(
   options: ApiRequestOptions = {}
 ): Promise<T> {
   const response = await apiRequest(endpoint, options);
-  
+
   if (!response.ok) {
     const error = await response.json().catch(() => ({
       message: `HTTP error! status: ${response.status}`,
