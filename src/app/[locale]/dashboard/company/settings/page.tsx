@@ -320,10 +320,10 @@ export default function SettingsPage() {
           <Card title="API Keys" style={{ marginBottom: 24 }}>
             <Form layout="vertical">
               <Form.Item label="API Key">
-                <Input.Password value="sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx" readOnly />
+                <Input.Password value="" readOnly />
               </Form.Item>
               <Form.Item label="Secret Key">
-                <Input.Password value="sk_secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx" readOnly />
+                <Input.Password value="" readOnly />
               </Form.Item>
               <Space>
                 <Button type="primary">Tạo key mới</Button>
