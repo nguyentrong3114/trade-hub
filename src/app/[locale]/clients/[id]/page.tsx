@@ -12,21 +12,30 @@ import {
   ClientProfileHeader,
   ClientAbout,
   ClientBlog,
-  ClientLeaders,
-  ClientTestimonials,
   ClientGallery,
-  ClientContactCard,
   ClientAchievements,
   ClientCertifications,
   ClientCTA,
   ClientNavbar,
   ClientRecruitment,
+  ClientVideoSection,
+  ClientPricingSnapshot,
+  ClientAccordionSection,
+  ClientReviews,
+  ClientPortfolioAwards,
+  ClientAboutTeam,
+  ClientVerification,
+  ClientLocation,
+  ClientContactSection,
+  ClientConnections,
 } from "@/components/clients";
+import { useTranslations } from "next-intl";
 
 export default function ClientDetailPage() {
   const params = useParams();
   const locale = params.locale as string;
   const clientId = parseInt(params.id as string, 10);
+  const t = useTranslations("clientAccordion");
 
   // Tìm client chi tiết hoặc tạo từ basic data
   let client: ClientDetail | null = CLIENT_DETAILS.find((c) => c.id === clientId) || null;
@@ -73,14 +82,58 @@ export default function ClientDetailPage() {
             <section id="about">
               <ClientAbout client={client} />
             </section>
+            <section id="video">
+              <ClientVideoSection client={client} />
+            </section>
+            <section id="pricing">
+              <ClientPricingSnapshot client={client} />
+            </section>
+
+            {/* Accordion Sections */}
+            <section id="accordion">
+              <ClientAccordionSection
+                items={[
+                  {
+                    id: "reviews",
+                    title: t("reviews"),
+                    content: <ClientReviews client={client} />,
+                  },
+                  {
+                    id: "portfolio",
+                    title: t("portfolioAwards"),
+                    content: <ClientPortfolioAwards client={client} />,
+                  },
+                  {
+                    id: "aboutTeam",
+                    title: t("aboutTeam"),
+                    content: <ClientAboutTeam client={client} />,
+                  },
+                  {
+                    id: "verification",
+                    title: t("verification"),
+                    content: <ClientVerification client={client} />,
+                  },
+                  {
+                    id: "location",
+                    title: t("location"),
+                    content: <ClientLocation client={client} />,
+                  },
+                  {
+                    id: "contact",
+                    title: t("contact"),
+                    content: <ClientContactSection client={client} />,
+                  },
+                  {
+                    id: "connections",
+                    title: t("connections"),
+                    content: <ClientConnections client={client} />,
+                  },
+                ]}
+              />
+            </section>
+
             <section id="blog">
               <ClientBlog companyName={client.name} locale={locale} clientId={client.id} />
-            </section>
-            <section id="leaders">
-              <ClientLeaders leaders={client.leaders} locale={locale} />
-            </section>
-            <section id="testimonials">
-              <ClientTestimonials testimonials={client.testimonials} />
             </section>
             <section id="recruitment">
               <ClientRecruitment companyName={client.name} locale={locale} />
@@ -92,9 +145,6 @@ export default function ClientDetailPage() {
 
           {/* Right Column - Sidebar */}
           <aside className="space-y-6">
-            <div id="contact">
-              <ClientContactCard client={client} />
-            </div>
             <ClientAchievements achievements={client.achievements} />
             <ClientCertifications certifications={client.certifications || []} />
             <ClientCTA locale={locale} />

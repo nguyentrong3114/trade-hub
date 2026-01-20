@@ -17,13 +17,13 @@ export default async function Footer() {
             <div className="flex items-center space-x-2 mb-4">
               <Image
                 src="/logotradehub.png"
-                alt="TradeHub Logo"
+                alt="B2B Logo"
                 width={40}
                 height={40}
                 className="object-contain rounded-full"
               />
               <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                TradeHub
+                B2B
               </h3>
             </div>
             <p className="text-sm leading-relaxed text-gray-700">

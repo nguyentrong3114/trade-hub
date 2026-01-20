@@ -19,4 +19,14 @@ export { default as ClientCTA } from "./ClientCTA";
 export { default as ClientStore } from "./ClientStore";
 export { default as ClientNavbar } from "./ClientNavbar";
 export { default as ClientRecruitment } from "./ClientRecruitment";
+export { default as ClientVideoSection } from "./ClientVideoSection";
+export { default as ClientPricingSnapshot } from "./ClientPricingSnapshot";
+export { default as ClientAccordionSection } from "./ClientAccordionSection";
+export { default as ClientReviews } from "./ClientReviews";
+export { default as ClientPortfolioAwards } from "./ClientPortfolioAwards";
+export { default as ClientAboutTeam } from "./ClientAboutTeam";
+export { default as ClientVerification } from "./ClientVerification";
+export { default as ClientLocation } from "./ClientLocation";
+export { default as ClientContactSection } from "./ClientContactSection";
+export { default as ClientConnections } from "./ClientConnections";
 

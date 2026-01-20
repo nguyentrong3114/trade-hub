@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { ConfigProvider, Layout, Menu, Avatar, Dropdown, Badge, Button, theme, Tooltip } from "antd";
 import type { MenuProps } from "antd";
+import { useAuthStore } from "@/stores/authStore";
+// TODO: Uncomment khi có authentication thực tế
+// import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import {
   HomeOutlined,
   ShopOutlined,
@@ -37,7 +40,19 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
   const [collapsed, setCollapsed] = useState(false);
   const params = useParams();
   const pathname = usePathname();
+  const router = useRouter();
   const locale = params.locale as string;
+  const { user, logout } = useAuthStore();
+  
+  // TODO: Xóa khi có authentication thực tế
+  // Mock user để hiển thị UI khi chưa login
+  const displayUser = user || {
+    fullName: "Company Owner",
+    companyName: "TechCorp",
+    email: "company@example.com",
+    userType: "business" as const,
+    role: "company_owner",
+  };
 
   // Start guided tour
   const startTour = () => {
@@ -204,6 +219,11 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
     },
   ];
 
+  const handleLogout = () => {
+    logout();
+    router.push(`/${locale}/auth/login`);
+  };
+
   const userMenuItems: MenuProps["items"] = [
     { key: "profile", icon: <ShopOutlined />, label: "Hồ sơ công ty" },
     { key: "settings", icon: <SettingOutlined />, label: "Cài đặt" },
@@ -211,7 +231,8 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
     {
       key: "logout",
       icon: <LogoutOutlined />,
-      label: <Link href={`/${locale}`}>Đăng xuất</Link>,
+      label: "Đăng xuất",
+      onClick: handleLogout,
       danger: true,
     },
   ];
@@ -247,17 +268,21 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
     },
   ];
 
+  // TODO: Uncomment khi có authentication thực tế
+  // return (
+  //   <ProtectedRoute requiredUserType="business">
+  //     <ConfigProvider
   return (
     <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#10b981",
-          borderRadius: 8,
-        },
-        algorithm: theme.defaultAlgorithm,
-      }}
-    >
-      <Layout style={{ minHeight: "100vh" }}>
+        theme={{
+          token: {
+            colorPrimary: "#10b981",
+            borderRadius: 8,
+          },
+          algorithm: theme.defaultAlgorithm,
+        }}
+      >
+        <Layout style={{ minHeight: "100vh" }}>
         {/* Sidebar */}
         <Sider
           trigger={null}
@@ -287,11 +312,11 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
             }}
           >
             <Avatar size={40} style={{ backgroundColor: "#10b981" }}>
-              TC
+              {displayUser?.companyName?.charAt(0) || displayUser?.fullName?.charAt(0) || "C"}
             </Avatar>
             {!collapsed && (
               <span style={{ marginLeft: 12, fontSize: 16, fontWeight: 600 }}>
-                TechCorp
+                {displayUser?.companyName || displayUser?.fullName || "Company"}
               </span>
             )}
           </div>
@@ -356,8 +381,10 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
 
               <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
-                  <Avatar style={{ backgroundColor: "#10b981" }}>TC</Avatar>
-                  <span style={{ fontWeight: 500 }}>TechCorp</span>
+                  <Avatar style={{ backgroundColor: "#10b981" }}>
+                    {displayUser?.companyName?.charAt(0) || displayUser?.fullName?.charAt(0) || "C"}
+                  </Avatar>
+                  <span style={{ fontWeight: 500 }}>{displayUser?.companyName || displayUser?.fullName || "Company"}</span>
                 </div>
               </Dropdown>
             </div>
@@ -438,5 +465,7 @@ export default function CompanyLayout({ children }: { children: React.ReactNode 
         }
       `}</style>
     </ConfigProvider>
+    // </ProtectedRoute>
+    // );
   );
 }

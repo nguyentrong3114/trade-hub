@@ -19,7 +19,7 @@ export default async function HeroSection({
                 {/* Background Image */}
                 <Image
                     src={image}
-                    alt="TradeHub Logo"
+                    alt="B2B Logo"
                     fill
                     className="object-cover"
                     priority

@@ -17,12 +17,15 @@ import {
   FaApple,
   FaArrowRight,
 } from "react-icons/fa";
+import { useAuthStore } from "@/stores/authStore";
+import { getDashboardPathByUserType } from "@/lib/auth-routing";
 
 export default function LoginPage() {
   const t = useTranslations("auth.login");
   const params = useParams();
   const router = useRouter();
   const locale = params.locale as string;
+  const { login } = useAuthStore();
   const [userType, setUserType] = useState<"user" | "business">("user");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,8 +44,8 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
-      const response = await fetch(`${backendUrl}/api/auth/login`, {
+      // Call Next.js API route which will proxy to backend
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,18 +71,12 @@ export default function LoginPage() {
         return;
       }
 
-      // Store user data in localStorage (optional, for client-side access)
-      if (typeof window !== "undefined") {
-        localStorage.setItem("user", JSON.stringify(data.data.user));
-        localStorage.setItem("token", data.data.token);
-      }
+      // Store in auth store
+      const accessToken = data.data.accessToken || data.data.token;
+      login(data.data.user, accessToken);
 
       // Redirect based on user type
-      if (data.data.user.userType === "business") {
-        router.push(`/${locale}/dashboard/company`);
-      } else {
-        router.push(`/${locale}/dashboard/user`);
-      }
+      router.push(`/${locale}${getDashboardPathByUserType(data.data.user.userType)}`);
     } catch (err) {
       console.error("Login error:", err);
       setError("Đã có lỗi xảy ra. Vui lòng thử lại sau.");

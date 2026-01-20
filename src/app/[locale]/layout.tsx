@@ -7,6 +7,7 @@ import "@/app/globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import FloatingActions from "@/components/FloatingActions";
+import { QueryProvider } from "@/providers/QueryProvider";
 
 type Props = {
   children: React.ReactNode;
@@ -14,21 +15,21 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "Trade Hub",
-  description: "Trade Hub is a platform for trading and investing in the stock market.",
+  title: "B2B",
+  description: "B2B is a platform for trading and investing in the stock market.",
   keywords: ["trade", "invest", "stock", "market"],
-  authors: [{ name: "Trade Hub", url: "https://tradehub.com" }],
-  creator: "Trade Hub",
-  publisher: "Trade Hub",
+  authors: [{ name: "B2B", url: "https://b2b.com" }],
+  creator: "B2B",
+  publisher: "B2B",
   openGraph: {
-    title: "Trade Hub",
-    description: "Trade Hub is a platform for trading and investing in the stock market.",
+    title: "B2B",
+    description: "B2B is a platform for trading and investing in the stock market.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trade Hub",
-    description: "Trade Hub is a platform for trading and investing in the stock market.",
-    images: ["https://tradehub.com/og-image.png"],
+    title: "B2B",
+    description: "B2B is a platform for trading and investing in the stock market.",
+    images: ["https://b2b.com/og-image.png"],
   },
   icons: {
     icon: "/logotradehub.png",
@@ -48,14 +49,16 @@ export default async function RootLayout({ children }: Props) {
   return (
     <html lang={locale}>
       <body className="min-h-screen flex flex-col">
-        <NextIntlClientProvider messages={messages}>
-          {!isIsolatedDashboard && <Header />}
-          <main className={isIsolatedDashboard ? "" : "flex-1"}>
-            {children}
-          </main>
-          {!isIsolatedDashboard && <Footer />}
-          {!isIsolatedDashboard && <FloatingActions />}
-        </NextIntlClientProvider>
+        <QueryProvider>
+          <NextIntlClientProvider messages={messages}>
+            {!isIsolatedDashboard && <Header />}
+            <main className={isIsolatedDashboard ? "" : "flex-1"}>
+              {children}
+            </main>
+            {!isIsolatedDashboard && <Footer />}
+            {!isIsolatedDashboard && <FloatingActions />}
+          </NextIntlClientProvider>
+        </QueryProvider>
       </body>
     </html>
   );

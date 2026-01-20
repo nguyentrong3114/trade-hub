@@ -21,12 +21,15 @@ import {
   FaArrowRight,
   FaCheck,
 } from "react-icons/fa";
+import { useAuthStore } from "@/stores/authStore";
+import { getDashboardPathByUserType } from "@/lib/auth-routing";
 
 export default function RegisterPage() {
   const t = useTranslations("auth.register");
   const params = useParams();
   const router = useRouter();
   const locale = params.locale as string;
+  const { login } = useAuthStore();
   const [userType, setUserType] = useState<"USER" | "BUSINESS">("USER");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -40,7 +43,8 @@ export default function RegisterPage() {
     password: "",
     confirmPassword: "",
     phone: "",
-    agreeTerms: false,
+    termsAccepted: false,
+    privacyPolicyAccepted: false,
     companyName: "",
     taxCode: "",
     address: "",
@@ -58,8 +62,6 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
-      
       // Prepare request body based on user type
       // Convert userType to lowercase for backend
       const userTypeLower = userType.toLowerCase() as "user" | "business";
@@ -83,7 +85,12 @@ export default function RegisterPage() {
         requestBody.representative = formData.representative;
       }
 
-      const response = await fetch(`${backendUrl}/api/auth/register`, {
+      // Add terms and privacy policy acceptance
+      requestBody.termsAccepted = formData.termsAccepted;
+      requestBody.privacyPolicyAccepted = formData.privacyPolicyAccepted;
+
+      // Call Next.js API route which will proxy to backend
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,19 +109,12 @@ export default function RegisterPage() {
         return;
       }
 
-      // Store user data in localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem("user", JSON.stringify(data.data.user));
-        localStorage.setItem("token", data.data.token);
-      }
+      // Store in auth store
+      const accessToken = data.data.accessToken || data.data.token;
+      login(data.data.user, accessToken);
 
       // Redirect based on user type
-      const userTypeFromResponse = data.data.user.userType?.toUpperCase();
-      if (userTypeFromResponse === "BUSINESS") {
-        router.push(`/${locale}/dashboard/company`);
-      } else {
-        router.push(`/${locale}/dashboard/user`);
-      }
+      router.push(`/${locale}${getDashboardPathByUserType(data.data.user.userType)}`);
     } catch (err) {
       console.error("Register error:", err);
       setError("Đã có lỗi xảy ra. Vui lòng thử lại sau.");
@@ -498,28 +498,46 @@ export default function RegisterPage() {
               )}
             </AnimatePresence>
 
-            {/* Terms - only show on final step */}
+            {/* Terms and Privacy Policy - only show on final step */}
             {(userType === "USER" || step === 2) && (
-              <div className="flex items-start gap-2 pt-1">
-                <input
-                  id="agreeTerms"
-                  name="agreeTerms"
-                  type="checkbox"
-                  required
-                  checked={formData.agreeTerms}
-                  onChange={handleChange}
-                  className="w-3.5 h-3.5 mt-0.5 border border-gray-300 rounded text-emerald-600 focus:ring-emerald-500"
-                />
-                <label htmlFor="agreeTerms" className="text-xs text-gray-600">
-                  Tôi đồng ý với{" "}
-                  <Link href={`/${locale}/terms`} className="text-emerald-600 hover:underline">
-                    Điều khoản
-                  </Link>{" "}
-                  và{" "}
-                  <Link href={`/${locale}/privacy`} className="text-emerald-600 hover:underline">
-                    Chính sách bảo mật
-                  </Link>
-                </label>
+              <div className="space-y-2 pt-1">
+                {/* Terms Checkbox */}
+                <div className="flex items-start gap-2">
+                  <input
+                    id="termsAccepted"
+                    name="termsAccepted"
+                    type="checkbox"
+                    required
+                    checked={formData.termsAccepted}
+                    onChange={handleChange}
+                    className="w-3.5 h-3.5 mt-0.5 border border-gray-300 rounded text-emerald-600 focus:ring-emerald-500"
+                  />
+                  <label htmlFor="termsAccepted" className="text-xs text-gray-600">
+                    Tôi đồng ý với{" "}
+                    <Link href={`/${locale}/terms`} className="text-emerald-600 hover:underline">
+                      Điều khoản dịch vụ
+                    </Link>
+                  </label>
+                </div>
+                
+                {/* Privacy Policy Checkbox */}
+                <div className="flex items-start gap-2">
+                  <input
+                    id="privacyPolicyAccepted"
+                    name="privacyPolicyAccepted"
+                    type="checkbox"
+                    required
+                    checked={formData.privacyPolicyAccepted}
+                    onChange={handleChange}
+                    className="w-3.5 h-3.5 mt-0.5 border border-gray-300 rounded text-emerald-600 focus:ring-emerald-500"
+                  />
+                  <label htmlFor="privacyPolicyAccepted" className="text-xs text-gray-600">
+                    Tôi đồng ý với{" "}
+                    <Link href={`/${locale}/privacy`} className="text-emerald-600 hover:underline">
+                      Chính sách bảo mật
+                    </Link>
+                  </label>
+                </div>
               </div>
             )}
 

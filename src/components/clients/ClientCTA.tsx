@@ -8,10 +8,10 @@ export default function ClientCTA({ locale }: Props) {
   return (
     <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white">
       <h2 className="text-lg font-bold mb-2">
-        Hợp tác cùng TradeHub
+        Hợp tác cùng B2B
       </h2>
       <p className="text-sm text-blue-100 mb-4 leading-relaxed">
-        TradeHub kết nối các đối tác chiến lược để xây dựng hệ sinh thái
+        B2B kết nối các đối tác chiến lược để xây dựng hệ sinh thái
         giao dịch an toàn, minh bạch và hiệu quả.
       </p>
       <Link

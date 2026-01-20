@@ -50,14 +50,32 @@ export interface ClientDetail {
   logo: string;
   coverImage?: string;
   category: string;
+  videoUrl?: string | null;
+  costRating?: number | null;
+  mostCommonProjectSize?: {
+    range: string;
+    reviews: number;
+  };
+  projectSizeDistribution?: {
+    range: string;
+    percentage: number;
+  }[];
+  clientFeedback?: string;
+  services?: string[];
+  additionalServicesCount?: number;
   rank: string;
   overview: string;
   mission?: string;
   vision?: string;
+  minProjectSize?: string;
+  hourlyRate?: string;
   coreValues?: string[];
   foundedYear: number;
   employeeCount: string;
   location: string;
+  timezones?: number;
+  languages?: number;
+  additionalLocations?: number;
   address: string;
   email: string;
   phone: string;

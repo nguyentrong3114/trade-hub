@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { buildBackendHeaders } from "@/lib/api-helpers";
 
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3001";
 
@@ -6,16 +7,10 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    // Forward request to backend
+    // Forward request to backend with all cookies and headers
     const backendResponse = await fetch(`${BACKEND_URL}/api/auth/login`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // Forward cookies from original request if needed
-        ...(request.cookies.get("auth-token") && {
-          Cookie: `auth-token=${request.cookies.get("auth-token")?.value}`,
-        }),
-      },
+      headers: buildBackendHeaders(request),
       body: JSON.stringify(body),
     });
 

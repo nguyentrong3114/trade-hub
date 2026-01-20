@@ -32,8 +32,6 @@ export default function ClientNavbar({ clientName, clientLogo }: ClientNavbarPro
   const navItems: NavItem[] = [
     { id: "about", labelKey: "about", icon: <FaInfoCircle className="w-5 h-5" /> },
     { id: "blog", labelKey: "blog", icon: <FaNewspaper className="w-5 h-5" /> },
-    { id: "leaders", labelKey: "leaders", icon: <FaUsers className="w-5 h-5" /> },
-    { id: "testimonials", labelKey: "testimonials", icon: <FaComments className="w-5 h-5" /> },
     { id: "recruitment", labelKey: "recruitment", icon: <FaBriefcase className="w-5 h-5" /> },
     { id: "gallery", labelKey: "gallery", icon: <FaImages className="w-5 h-5" /> },
     { id: "contact", labelKey: "contact", icon: <FaPhone className="w-5 h-5" /> },

@@ -1,7 +1,7 @@
 {
   "header": {
     "contact": {
-      "email": "contact@tradehub.com",
+      "email": "contact@b2b.com",
       "phone": "+356 836 2335"
     },
     "social": {
@@ -31,6 +31,93 @@
     "clients": "Clients",
     "market": "Market"
   },
+  "footerNav": {
+    "development": "Development",
+    "itServices": "IT Services",
+    "marketing": "Marketing",
+    "design": "Design",
+    "businessServices": "Business Services",
+    "resources": "Resources",
+    "viewMore": "More in {label} →",
+    "columns": {
+      "mobileApps": "Mobile Apps",
+      "software": "Software",
+      "web": "Web",
+      "emergingTech": "Emerging Tech",
+      "frameworks": "Frameworks",
+      "ecommerce": "E-Commerce",
+      "cloudInfrastructure": "Cloud & Infrastructure",
+      "security": "Security",
+      "supportMaintenance": "Support & Maintenance",
+      "digitalMarketing": "Digital Marketing",
+      "analyticsStrategy": "Analytics & Strategy",
+      "uiUxDesign": "UI/UX Design",
+      "graphicDesign": "Graphic Design",
+      "consulting": "Consulting",
+      "operations": "Operations",
+      "learning": "Learning",
+      "tools": "Tools"
+    },
+    "items": {
+      "appDevelopers": "App Developers",
+      "iphoneApps": "iPhone Apps",
+      "androidApps": "Android Apps",
+      "gamingApps": "Gaming Apps",
+      "financeApps": "Finance Apps",
+      "softwareDevelopers": "Software Developers",
+      "softwareTesting": "Software Testing",
+      "webDevelopers": "Web Developers",
+      "pythonDjango": "Python & Django",
+      "artificialIntelligence": "Artificial Intelligence",
+      "ecommerceDevelopers": "E-Commerce Developers",
+      "cloudMigration": "Cloud Migration",
+      "awsServices": "AWS Services",
+      "azureServices": "Azure Services",
+      "googleCloud": "Google Cloud",
+      "cybersecurity": "Cybersecurity",
+      "penetrationTesting": "Penetration Testing",
+      "securityAudits": "Security Audits",
+      "dataProtection": "Data Protection",
+      "itSupport": "IT Support",
+      "systemMaintenance": "System Maintenance",
+      "helpDesk": "Help Desk",
+      "managedServices": "Managed Services",
+      "seoServices": "SEO Services",
+      "ppcAdvertising": "PPC Advertising",
+      "socialMediaMarketing": "Social Media Marketing",
+      "contentMarketing": "Content Marketing",
+      "emailMarketing": "Email Marketing",
+      "marketingAnalytics": "Marketing Analytics",
+      "marketingStrategy": "Marketing Strategy",
+      "brandStrategy": "Brand Strategy",
+      "marketResearch": "Market Research",
+      "uiDesign": "UI Design",
+      "uxDesign": "UX Design",
+      "webDesign": "Web Design",
+      "mobileAppDesign": "Mobile App Design",
+      "prototyping": "Prototyping",
+      "logoDesign": "Logo Design",
+      "brandIdentity": "Brand Identity",
+      "printDesign": "Print Design",
+      "illustration": "Illustration",
+      "businessConsulting": "Business Consulting",
+      "itConsulting": "IT Consulting",
+      "financialConsulting": "Financial Consulting",
+      "strategyConsulting": "Strategy Consulting",
+      "processOptimization": "Process Optimization",
+      "supplyChain": "Supply Chain",
+      "projectManagement": "Project Management",
+      "qualityAssurance": "Quality Assurance",
+      "documentation": "Documentation",
+      "tutorials": "Tutorials",
+      "webinars": "Webinars",
+      "caseStudies": "Case Studies",
+      "apiDocumentation": "API Documentation",
+      "sdks": "SDKs",
+      "templates": "Templates",
+      "integrations": "Integrations"
+    }
+  },
   "cart": {
     "title": "Shopping Cart",
     "emptyCart": "Your cart is empty",
@@ -58,7 +145,7 @@
       "badge": "✨ Key Features",
       "title": "Key Features",
       "subtitle": "Everything you need to trade successfully",
-      "exploreMore": "Learn More about all of TradeHub's Features",
+      "exploreMore": "Learn More about all of B2B's Features",
       "item1": {
         "title": "Fast Trading",
         "description": "Execute trades in seconds with high-speed technology"
@@ -98,7 +185,7 @@
     },
     "cta": {
       "title": "Ready to Get Started?",
-      "description": "Join thousands of traders using TradeHub",
+      "description": "Join thousands of traders using B2B",
       "button": "Sign Up Now"
     },
     "faq": {
@@ -106,7 +193,7 @@
       "subtitle": "We're here to help you and solve objections. Find answers to the most common questions below.",
       "ctaButton": "Contact Sales Now",
       "contactText": "Feel free to mail us for any enquiries:",
-      "contactEmail": "contact@tradehub.com"
+      "contactEmail": "contact@b2b.com"
     },
     "comingSoon": {
       "heading1": "Next-Gen Automation",
@@ -121,7 +208,7 @@
       "socialProof": "Trusted by 10k+ Audience worldwide"
     },
     "footer": {
-      "copyright": "© 2024 TradeHub. All rights reserved.",
+      "copyright": "© 2024 B2B. All rights reserved.",
       "about": {
         "title": "About Us",
         "description": "Leading smart trading platform, helping you manage investments efficiently and securely."
@@ -162,9 +249,100 @@
     "readMore": "Read more",
     "viewAll": "View all posts"
   },
+  "clientDetail": {
+    "watchVideo": "Watch our Video",
+    "minProjectSize": "Min. project size",
+    "employees": "Employees",
+    "yearFounded": "Year founded",
+    "founded": "Founded {year}",
+    "timezones": "Timezones",
+    "timezonesCount": "{count} Timezones",
+    "hourlyRate": "Hourly rate",
+    "locations": "Locations",
+    "languages": "Languages",
+    "languagesCount": "{count} Languages",
+    "pricingSnapshot": "Pricing Snapshot",
+    "avgHourlyRate": "Avg. hourly rate",
+    "ratingForCost": "Rating for cost",
+    "mostCommonProjectSize": "Most Common Project Size",
+    "basedOnReviews": "based on {count} reviews",
+    "whatClientsHaveSaid": "What Clients Have Said",
+    "selectServiceForPricing": "Select a service to see pricing information",
+    "all": "All",
+    "more": "more"
+  },
+  "clientAccordion": {
+    "reviews": "Reviews",
+    "portfolioAwards": "Portfolio & Awards",
+    "aboutTeam": "About the Team",
+    "verification": "Verification",
+    "location": "Location",
+    "contact": "Contact",
+    "connections": "Connections"
+  },
+  "clientReviews": {
+    "verificationInfo": "Clutch investigates each reviewer's identity and work history. Every review goes through a rigorous, human-led verification process to confirm the reviewer's identity, and reviews that we verify are visibly marked as 'Verified' so you can trust that they come from a real client.",
+    "topMentions": "Top Mentions",
+    "overallReviewRating": "Overall Review Rating",
+    "seeBreakdown": "See Breakdown",
+    "reviewHighlights": "Review Highlights",
+    "readAllReviews": "Read all {count} Reviews",
+    "wasThisHelpful": "Was this helpful?"
+  },
+  "clientPortfolio": {
+    "portfolio": "Portfolio",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "keyClients": "KEY CLIENTS",
+    "clutchAwards": "Clutch Awards",
+    "featuredAwards": "Featured Awards"
+  },
+  "clientAboutTeam": {
+    "ourStory": "Our Story",
+    "whatSetsUsApart": "What Sets Us Apart",
+    "quickFacts": "Quick Facts",
+    "toolsAndTechnology": "Tools and Technology"
+  },
+  "clientVerification": {
+    "intro": "Clutch verification provides an additional layer of data to help you make the right purchasing decision of business services.",
+    "learnMore": "Learn More",
+    "verifiedClientReviews": "VERIFIED CLIENT REVIEWS",
+    "overallReviewRating": "OVERALL REVIEW RATING",
+    "source": "SOURCE",
+    "lastUpdated": "LAST UPDATED",
+    "businessEntity": "Business Entity",
+    "businessEntityName": "Business Entity Name",
+    "jurisdiction": "Jurisdiction of Formation",
+    "dateOfFormation": "Date of Formation",
+    "status": "Status",
+    "creditReportResults": "Credit Report Results",
+    "internationalCreditRisk": "International Credit Risk Assessment",
+    "learnMoreAboutVerification": "Learn More About The Clutch Verification Process"
+  },
+  "clientLocation": {
+    "locations": "Locations"
+  },
+  "clientContact": {
+    "contactInformation": "Contact Information",
+    "address": "Address",
+    "email": "Email",
+    "phone": "Phone",
+    "website": "Website",
+    "contactCompany": "Contact {company}",
+    "customMessage1": "If you're not seeing exactly what you need here, send this company a custom message.",
+    "customMessage2": "You can talk about your project needs, price, and timeline to get started on your project.",
+    "sendMessage": "Send a message",
+    "connectOnSocial": "Connect with {company} on Social"
+  },
+  "clientConnections": {
+    "description": "Our network of partners, certifications, and industry associations.",
+    "partners": "Partners",
+    "certifications": "Certifications",
+    "associations": "Associations"
+  },
   "about": {
     "hero": {
-      "badge": "The TradeHub journey",
+      "badge": "The B2B journey",
       "title": "From a small startup to a leading trading platform",
       "description": "We build a modern, secure and transparent trading experience, helping users make better decisions with data and intuitive tools.",
       "ctaJourney": "View our journey",
@@ -235,7 +413,7 @@
       "item1": {
         "year": "2018",
         "title": "Company Founded",
-        "description": "TradeHub was founded with a mission to revolutionize the online trading industry. We started with a small but passionate team."
+        "description": "B2B was founded with a mission to revolutionize the online trading industry. We started with a small but passionate team."
       },
       "item2": {
         "year": "2019",
@@ -282,22 +460,22 @@
         "badge": "Our Story",
         "title": "Building bridges for",
         "titleGray": "international trade",
-        "desc1": "TradeHub was born from the belief that every business, big or small, deserves the opportunity to access global markets. In an increasingly connected world, we recognized that Vietnamese businesses have tremendous potential but often face challenges in finding suitable international partners and building sustainable trade relationships.",
-        "desc2": "We are not just a platform - we are a partner, supporting Vietnamese businesses from the first step to success in international markets. With an experienced team of experts and advanced technology, TradeHub provides comprehensive solutions from strategic consulting, partner connections, to transaction execution support.",
+        "desc1": "B2B was born from the belief that every business, big or small, deserves the opportunity to access global markets. In an increasingly connected world, we recognized that Vietnamese businesses have tremendous potential but often face challenges in finding suitable international partners and building sustainable trade relationships.",
+        "desc2": "We are not just a platform - we are a partner, supporting Vietnamese businesses from the first step to success in international markets. With an experienced team of experts and advanced technology, B2B provides comprehensive solutions from strategic consulting, partner connections, to transaction execution support.",
         "desc3": "Over the past 6 years, we have helped thousands of businesses expand their markets, increase revenue, and build international brands. Each partner's success motivates us to continuously improve and develop.",
         "desc4": "We believe that international trade is not just about transactions, but about building long-term relationships and creating value for both parties. That's why we always prioritize quality and partner satisfaction in everything we do.",
         "cta": "Explore Partners",
         "quote": "Our mission is to eliminate trade barriers and create opportunities for every business.",
         "founder": "Founder",
-        "company": "TradeHub"
+        "company": "B2B"
       },
       "mission": {
         "badge": "Mission & Vision",
         "title": "Shaping the Future",
         "missionTitle": "Our Mission",
-        "missionDesc": "TradeHub is committed to being a trusted bridge between Vietnamese businesses and global markets. We don't just provide tools and platforms, but also accompany businesses in every step of their internationalization journey. Our mission is to empower every business, regardless of size, to compete fairly and succeed on the international stage.",
+        "missionDesc": "B2B is committed to being a trusted bridge between Vietnamese businesses and global markets. We don't just provide tools and platforms, but also accompany businesses in every step of their internationalization journey. Our mission is to empower every business, regardless of size, to compete fairly and succeed on the international stage.",
         "visionTitle": "Vision 2030",
-        "visionDesc": "By 2030, TradeHub will become the leading B2B platform in Southeast Asia, connecting over 10,000 Vietnamese businesses with global markets. We envision a future where every business can easily access international trade opportunities, where language, cultural, and geographical barriers are no longer obstacles. We want to create a digital trade ecosystem where transparency, fairness, and sustainable development are core values.",
+        "visionDesc": "By 2030, B2B will become the leading B2B platform in Southeast Asia, connecting over 10,000 Vietnamese businesses with global markets. We envision a future where every business can easily access international trade opportunities, where language, cultural, and geographical barriers are no longer obstacles. We want to create a digital trade ecosystem where transparency, fairness, and sustainable development are core values.",
         "goalsTitle": "Strategic Goals",
         "goal1": "Expand partner network to 1,000+ international companies by 2026",
         "goal2": "Support 5,000+ Vietnamese businesses to export successfully",
@@ -305,6 +483,23 @@
         "goal4": "Establish offices in 10 Asia-Pacific countries"
       },
       "services": {
+        "appDevelopers": {
+          "title": "Mobile App Developers",
+          "description": "Find professional mobile app development companies. From iOS to Android, we have partners that match your needs.",
+          "verifiedCompanies": "Verified Companies",
+          "completedProjects": "Completed Projects",
+          "companies": "Companies",
+          "projects": "Projects",
+          "reviews": "Reviews",
+          "verified": "Verified",
+          "verifiedTooltip": "Verified",
+          "employees": "employees",
+          "projectsCompleted": "projects completed",
+          "viewDetails": "View Details →",
+          "noCompanies": "No companies found",
+          "reviewsCount": "({count} reviews)",
+          "moreServices": "+{count}"
+        },
         "badge": "Our Services",
         "title": "Comprehensive Solutions",
         "subtitle": "From consulting to execution, we support you at every stage",
@@ -318,7 +513,7 @@
         },
         "service3": {
           "title": "B2B Auction Platform",
-          "desc": "Launched in 2022, TradeHub's B2B auction platform has revolutionized how businesses buy and sell goods and services. With blockchain and AI technology, we ensure transparency, security, and efficiency in every transaction. Over 10,000 transactions have been successfully completed with a total value of over $500 million."
+          "desc": "Launched in 2022, B2B's B2B auction platform has revolutionized how businesses buy and sell goods and services. With blockchain and AI technology, we ensure transparency, security, and efficiency in every transaction. Over 10,000 transactions have been successfully completed with a total value of over $500 million."
         },
         "service4": {
           "title": "Logistics & Payment Support",
@@ -343,7 +538,7 @@
         },
         "tech2": {
           "title": "Blockchain & Security",
-          "desc": "Every transaction on the TradeHub platform is recorded on blockchain, ensuring transparency and immutability. We use end-to-end encryption and multi-layer security measures to protect your information. The system has been tested and certified by leading international security organizations."
+          "desc": "Every transaction on the B2B platform is recorded on blockchain, ensuring transparency and immutability. We use end-to-end encryption and multi-layer security measures to protect your information. The system has been tested and certified by leading international security organizations."
         },
         "tech3": {
           "title": "Cloud Computing",
@@ -358,7 +553,7 @@
         "badge": "Company Culture",
         "title": "Work Environment",
         "subtitle": "Where talent grows and innovation is encouraged",
-        "desc1": "At TradeHub, we believe that people are the most valuable asset. We build a work environment where every employee is respected, heard, and empowered to reach their full potential. We encourage diversity, inclusion, and collaboration across departments.",
+        "desc1": "At B2B, we believe that people are the most valuable asset. We build a work environment where every employee is respected, heard, and empowered to reach their full potential. We encourage diversity, inclusion, and collaboration across departments.",
         "desc2": "We heavily invest in talent development through training programs, mentoring, and advancement opportunities. Our employees are encouraged to learn, experiment, and innovate. We believe the best ideas come from empowering everyone.",
         "desc3": "Work-life balance is one of our core values. We provide flexible working hours, remote work options, and wellness programs to ensure employees are always healthy and happy both physically and mentally.",
         "benefits": {
@@ -377,7 +572,7 @@
         "milestone1": {
           "year": "2018",
           "title": "Beginning",
-          "desc": "TradeHub was founded with the mission to connect businesses"
+          "desc": "B2B was founded with the mission to connect businesses"
         },
         "milestone2": {
           "year": "2020",
@@ -418,7 +613,7 @@
         "badge": "Core Values",
         "title": "What We",
         "titleGray": "Believe In",
-        "subtitle": "The principles that guide all of TradeHub's activities",
+        "subtitle": "The principles that guide all of B2B's activities",
         "value1": {
           "title": "Transparency",
           "desc": "Every transaction is clear and public. We believe in honesty in business."
@@ -438,7 +633,7 @@
       },
       "cta": {
         "title": "Ready to Start Your Journey?",
-        "subtitle": "Join thousands of businesses growing on TradeHub",
+        "subtitle": "Join thousands of businesses growing on B2B",
         "button1": "Become a Partner",
         "button2": "View Service Plans"
       }
@@ -528,20 +723,26 @@
       }
     }
   },
+  "validation": {
+    "otp": {
+      "length": "OTP code must be {length} characters long",
+      "format": "OTP code may only contain digits"
+    }
+  },
   "terms": {
     "title": "Terms of Service",
     "lastUpdated": "Last updated: January 1, 2024",
-    "introduction": "Welcome to TradeHub. By accessing and using our platform, you agree to comply with the following terms and conditions. Please read carefully before using our services.",
+    "introduction": "Welcome to B2B. By accessing and using our platform, you agree to comply with the following terms and conditions. Please read carefully before using our services.",
     "section1": {
       "title": "1. Acceptance of Terms",
-      "content": "By accessing or using TradeHub, you acknowledge that you have read, understood, and agree to be bound by these terms. If you do not agree to any part of these terms, you may not use our services.",
+      "content": "By accessing or using B2B, you acknowledge that you have read, understood, and agree to be bound by these terms. If you do not agree to any part of these terms, you may not use our services.",
       "item1": "You must be at least 18 years old to use our services",
       "item2": "You are responsible for maintaining the security of your account",
       "item3": "You agree to provide accurate and up-to-date information"
     },
     "section2": {
       "title": "2. Use of Services",
-      "content": "TradeHub provides a trading and investment management platform. You agree to use our services lawfully and in accordance with the following guidelines:",
+      "content": "B2B provides a trading and investment management platform. You agree to use our services lawfully and in accordance with the following guidelines:",
       "item1": "Do not use the service for illegal purposes",
       "item2": "Do not attempt unauthorized access to the system",
       "item3": "Do not share login credentials with third parties"
@@ -555,11 +756,11 @@
     },
     "section4": {
       "title": "4. Liability and Risks",
-      "content": "Investment trading always involves risks. You understand and accept that: (1) You are solely responsible for your investment decisions, (2) TradeHub does not guarantee profits, and (3) You may lose part or all of your invested capital. We recommend seeking advice from financial professionals before making investment decisions."
+      "content": "Investment trading always involves risks. You understand and accept that: (1) You are solely responsible for your investment decisions, (2) B2B does not guarantee profits, and (3) You may lose part or all of your invested capital. We recommend seeking advice from financial professionals before making investment decisions."
     },
     "section5": {
       "title": "5. Intellectual Property",
-      "content": "All content, logos, trademarks, and other intellectual property on the TradeHub platform are the exclusive property of us or our licensors. You may not copy, distribute, or use any content without our written permission."
+      "content": "All content, logos, trademarks, and other intellectual property on the B2B platform are the exclusive property of us or our licensors. You may not copy, distribute, or use any content without our written permission."
     },
     "section6": {
       "title": "6. Changes to Terms",
@@ -575,7 +776,7 @@
   "privacy": {
     "title": "Privacy Policy",
     "lastUpdated": "Last updated: January 1, 2024",
-    "introduction": "TradeHub is committed to protecting your privacy and personal information. This Privacy Policy describes how we collect, use, store, and protect your information when you use our platform.",
+    "introduction": "B2B is committed to protecting your privacy and personal information. This Privacy Policy describes how we collect, use, store, and protect your information when you use our platform.",
     "section1": {
       "title": "1. Information We Collect",
       "content": "We collect the following types of information to provide and improve our services:",
@@ -626,7 +827,7 @@
     "talkWith": "Talk with us",
     "talkDescription": "We're here to help you. Drop us a line at",
     "talkDescriptionEnd": "and let's make something great.",
-    "contactEmail": "contact@tradehub.com",
+    "contactEmail": "contact@b2b.com",
     "formTitle": "Write to us.",
     "formSubtitle": "Fill out the form and we will get back to you within 48h.",
     "nameLabel": "Name.",
@@ -674,7 +875,8 @@
     "title": "Page Not Found",
     "description": "Sorry, the page you are looking for does not exist or has been moved.",
     "goHome": "Go Home",
-    "goToBlog": "Go to Blog"
+    "goToBlog": "Go to Blog",
+    "viewAllServices": "View All Services"
   },
   "hotblog": {
     "title": "Featured Posts",
@@ -726,6 +928,76 @@
       "feature5": "Advanced analytics",
       "feature6": "Advanced team management",
       "feature7": "Dedicated training and consulting"
+    }
+  },
+  "services": {
+    "appDevelopers": {
+      "title": "Mobile App Developers",
+      "description": "Find professional mobile app development companies. From iOS to Android, we have partners that match your needs.",
+      "readMore": "+ Read More",
+      "verifiedCompanies": "Verified Companies",
+      "completedProjects": "Completed Projects",
+      "companies": "Companies",
+      "projects": "Projects",
+      "reviews": "Reviews",
+      "verified": "Verified",
+      "verifiedTooltip": "Verified",
+      "employees": "employees",
+      "projectsCompleted": "projects completed",
+      "viewDetails": "View Details →",
+      "noCompanies": "No companies found",
+      "reviewsCount": "({count} reviews)",
+      "moreServices": "+{count}",
+      "breadcrumbs": {
+        "home": "Home",
+        "services": "Services",
+        "development": "Development",
+        "mobileApps": "Mobile Apps"
+      },
+      "trustBox": {
+        "text": "We verify reviews and evaluate companies so you can choose with confidence. We may earn a fee for some placements.",
+        "learnMore": "Learn how B2B ensures trust"
+      },
+      "ratingsUpdated": "Ratings Updated",
+      "badge": {
+        "top": "TOP APP DEVELOPER",
+        "year": "B2B 2025"
+      },
+      "getMatched": "Get Matched",
+      "companyCount": "Companies",
+      "tabs": {
+        "all": "All Companies",
+        "leaders": "Leaders Matrix",
+        "packages": "Packages",
+        "pricing": "Pricing",
+        "guide": "Services Guide"
+      },
+      "filters": {
+        "location": "Location",
+        "services": "Services",
+        "clientBudget": "Client Budget",
+        "hourlyRates": "Hourly Rates",
+        "industry": "Industry",
+        "reviews": "Reviews",
+        "allFilters": "All Filters",
+        "activeFilters": "Active Filters",
+        "clearAll": "Clear All"
+      },
+      "listTitle": "List of the Top Mobile App Development Companies",
+      "sponsored": "Sponsored",
+      "companyCard": {
+        "projectSize": "Project Size",
+        "hourlyRate": "Hourly Rate",
+        "employees": "Employees",
+        "location": "Location",
+        "viewAllProjects": "See all {count} projects →",
+        "viewProfile": "View Profile",
+        "visitWebsite": "Visit Website",
+        "proactive": "Proactive",
+        "experienceInIndustries": "Experience in {count} industries",
+        "costRating": "{rating} out of 5.0 rating for cost",
+        "completedProjectsInCities": "Completed projects in {count} cities"
+      }
     }
   }
 }

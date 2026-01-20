@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname, useParams } from "next/navigation";
+import { usePathname, useParams, useRouter } from "next/navigation";
 import { ConfigProvider, Layout, Menu, Avatar, Dropdown, Badge, Button, theme } from "antd";
 import type { MenuProps } from "antd";
+import { useAuthStore } from "@/stores/authStore";
+// TODO: Uncomment khi có authentication thực tế
+// import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import {
   DashboardOutlined,
   UserOutlined,
@@ -29,7 +32,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
   const params = useParams();
+  const router = useRouter();
   const locale = params.locale as string;
+  const { user, logout } = useAuthStore();
+  
+  // TODO: Xóa khi có authentication thực tế
+  // Mock user để hiển thị UI khi chưa login
+  const displayUser = user || {
+    fullName: "Admin",
+    email: "admin@b2b.com",
+    userType: "admin" as const,
+    role: "super_admin",
+  };
 
   const menuItems: MenuProps["items"] = [
     {
@@ -43,6 +57,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       label: "Quản lý Users",
       children: [
         { key: "users-list", label: <Link href={`/${locale}/dashboard/admin/users`}>Danh sách Users</Link> },
+        { key: "users-permissions", label: <Link href={`/${locale}/dashboard/admin/users/permissions`}>Cấp quyền</Link> },
         { key: "users-pending", label: <Link href={`/${locale}/dashboard/admin/users/pending`}>Chờ duyệt</Link> },
         { key: "users-banned", label: <Link href={`/${locale}/dashboard/admin/users/banned`}>Bị cấm</Link> },
       ],
@@ -93,6 +108,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     },
   ];
 
+  const handleLogout = () => {
+    logout();
+    router.push(`/${locale}/auth/login`);
+  };
+
   const userMenuItems: MenuProps["items"] = [
     { key: "profile", icon: <UserOutlined />, label: "Hồ sơ" },
     { key: "settings", icon: <SettingOutlined />, label: "Cài đặt" },
@@ -100,22 +120,27 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     {
       key: "logout",
       icon: <LogoutOutlined />,
-      label: <Link href={`/${locale}`}>Đăng xuất</Link>,
+      label: "Đăng xuất",
+      onClick: handleLogout,
       danger: true,
     },
   ];
 
+  // TODO: Uncomment khi có authentication thực tế
+  // return (
+  //   <ProtectedRoute requiredUserType="admin">
+  //     <ConfigProvider
   return (
     <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#dc2626",
-          borderRadius: 8,
-        },
-        algorithm: theme.defaultAlgorithm,
-      }}
-    >
-      <Layout style={{ minHeight: "100vh" }}>
+        theme={{
+          token: {
+            colorPrimary: "#dc2626",
+            borderRadius: 8,
+          },
+          algorithm: theme.defaultAlgorithm,
+        }}
+      >
+        <Layout style={{ minHeight: "100vh" }}>
         {/* Sidebar */}
         <Sider
           trigger={null}
@@ -204,8 +229,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               {/* User Dropdown */}
               <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
-                  <Avatar style={{ backgroundColor: "#dc2626" }} icon={<UserOutlined />} />
-                  <span style={{ fontWeight: 500 }}>Admin</span>
+                  <Avatar style={{ backgroundColor: "#dc2626" }}>
+                    {displayUser?.fullName?.charAt(0) || displayUser?.email?.charAt(0) || "A"}
+                  </Avatar>
+                  <span style={{ fontWeight: 500 }}>{displayUser?.fullName || displayUser?.email || "Admin"}</span>
                 </div>
               </Dropdown>
             </div>
@@ -223,6 +250,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </Layout>
       </Layout>
     </ConfigProvider>
+    // </ProtectedRoute>
+    // );
   );
 }
 

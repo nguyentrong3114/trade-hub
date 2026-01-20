@@ -88,7 +88,7 @@ export default function UserProfile() {
             email: "nguyenvana@email.com",
             phone: "0912345678",
             gender: "male",
-            bio: "Xin chào, tôi là người dùng Trade Hub!",
+            bio: "Xin chào, tôi là người dùng B2B!",
             address: "123 Đường ABC, Quận 1, TP. Hồ Chí Minh",
           }}
         >

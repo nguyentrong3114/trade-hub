@@ -9,8 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ant-design/charts": "^2.6.7",
     "@ant-design/icons": "^6.1.0",
+    "@tanstack/react-query": "^5.90.17",
+    "@tanstack/react-query-devtools": "^5.91.2",
     "antd": "^6.1.4",
+    "dayjs": "^1.11.19",
     "driver.js": "^1.4.0",
     "framer-motion": "^12.24.0",
     "jsonwebtoken": "^9.0.3",
@@ -21,7 +25,8 @@
     "react-dom": "19.2.3",
     "react-icons": "^5.5.0",
     "react-quill-new": "^3.7.0",
-    "three": "^0.182.0"
+    "three": "^0.182.0",
+    "zustand": "^5.0.10"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -1,21 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { 
-  FaEnvelope, 
-  FaPhone, 
-  FaTwitter, 
-  FaFacebook, 
+import {
+  FaEnvelope,
+  FaPhone,
+  FaTwitter,
+  FaFacebook,
   FaRss,
   FaSearch,
   FaBars,
   FaTimes,
   FaShoppingCart,
-  FaUser
+  FaUser,
+  FaChevronDown,
+  FaSignOutAlt,
 } from "react-icons/fa";
+import NotificationDropdown from "./NotificationDropdown";
+import { useAuthStore } from "@/stores/authStore";
+import { checkAuthApi, logoutApi } from "@/lib/auth-api";
+import { getDashboardPathByUserType } from "@/lib/auth-routing";
 
 const languages = [
   { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
@@ -44,13 +50,50 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("nav");
+  const tFooterNav = useTranslations("footerNav");
+  const { user, isAuthenticated, logout, login } = useAuthStore();
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isCartHover, setIsCartHover] = useState(false);
-  
-  // State để kiểm tra đăng nhập (tạm thời dùng false, có thể tích hợp với auth sau)
-  const [isLoggedIn] = useState(false);
+  const [clickedFooterNav, setClickedFooterNav] = useState<string | null>(null);
+  const [expandedMobileFooterNav, setExpandedMobileFooterNav] = useState<string | null>(null);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const data = await checkAuthApi();
+
+        const isAuthed =
+          data.success &&
+          (typeof data.isAuthenticated === "boolean"
+            ? data.isAuthenticated
+            : !!data.data?.user);
+
+        if (isAuthed && data.data?.user) {
+          // Update auth store with user data (ưu tiên accessToken nếu backend trả về)
+          login(data.data.user, data.data.accessToken || "");
+        } else {
+          // Clear auth if not authenticated
+          logout();
+        }
+      } catch (error) {
+        console.error("Check auth error:", error);
+        // On error, keep current state (don't force logout)
+      } finally {
+        setIsCheckingAuth(false);
+      }
+    };
+
+    // Only check if not already authenticated
+    if (!isAuthenticated) {
+      checkAuth();
+    } else {
+      setIsCheckingAuth(false);
+    }
+  }, [isAuthenticated, login, logout]);
   // Mock cart items - có thể tích hợp với state management sau
   const [cartItems] = useState<CartItem[]>([
     // Uncomment để test với items
@@ -86,7 +129,7 @@ export default function Header() {
       'Ỳ': 'Y', 'Ý': 'Y', 'Ỵ': 'Y', 'Ỷ': 'Y', 'Ỹ': 'Y',
       'Đ': 'D'
     };
-    
+
     return text
       .split('')
       .map(char => vietnameseMap[char] || char)
@@ -111,6 +154,207 @@ export default function Header() {
     "Đầu tư",
     "Bất động sản",
     "Y tế"
+  ];
+
+  // Footer navbar menu items với dropdown - sử dụng translation keys
+  const footerNavItems = [
+    {
+      id: "development",
+      labelKey: "development",
+      columns: [
+        {
+          titleKey: "mobileApps",
+          items: [
+            { labelKey: "appDevelopers", href: "/services/app-developers/app-developers" },
+            { labelKey: "iphoneApps", href: "/services/iphone-apps/iphone-apps" },
+            { labelKey: "androidApps", href: "/services/android-apps/android-apps" },
+            { labelKey: "gamingApps", href: "/services/gaming-apps/gaming-apps" },
+            { labelKey: "financeApps", href: "/services/finance-apps/finance-apps" },
+          ]
+        },
+        {
+          titleKey: "software",
+          items: [
+            { labelKey: "softwareDevelopers", href: "/services/software-developers/software-developers" },
+            { labelKey: "softwareTesting", href: "/services/software-testing/software-testing" },
+            { label: "Laravel", href: "/services/laravel/laravel" },
+            { label: "Microsoft SharePoint", href: "/services/sharepoint/sharepoint" },
+            { label: "Webflow", href: "/services/webflow/webflow" },
+          ]
+        },
+        {
+          titleKey: "web",
+          items: [
+            { labelKey: "webDevelopers", href: "/services/web-developers/web-developers" },
+            { labelKey: "pythonDjango", href: "/services/python-django/python-django" },
+            { label: "PHP", href: "/services/php/php" },
+            { label: "WordPress", href: "/services/wordpress/wordpress" },
+            { label: "Drupal", href: "/services/drupal/drupal" },
+          ]
+        },
+        {
+          titleKey: "emergingTech",
+          items: [
+            { labelKey: "artificialIntelligence", href: "/services/ai/ai" },
+            { label: "Blockchain", href: "/services/blockchain/blockchain" },
+            { label: "AR/VR", href: "/services/ar-vr/ar-vr" },
+            { label: "IoT", href: "/services/iot/iot" },
+          ]
+        },
+        {
+          titleKey: "frameworks",
+          items: [
+            { label: "React Native", href: "/services/react-native/react-native" },
+            { label: "Flutter", href: "/services/flutter/flutter" },
+            { label: ".NET", href: "/services/dotnet/dotnet" },
+            { label: "Ruby on Rails", href: "/services/rails/rails" },
+            { label: "Java", href: "/services/java/java" },
+          ]
+        },
+        {
+          titleKey: "ecommerce",
+          items: [
+            { labelKey: "ecommerceDevelopers", href: "/services/ecommerce-developers/ecommerce-developers" },
+            { label: "Magento", href: "/services/magento/magento" },
+            { label: "Shopify", href: "/services/shopify/shopify" },
+            { label: "BigCommerce", href: "/services/bigcommerce/bigcommerce" },
+            { label: "WooCommerce", href: "/services/woocommerce/woocommerce" },
+          ]
+        }
+      ]
+    },
+    {
+      id: "it-services",
+      labelKey: "itServices",
+      columns: [
+        {
+          titleKey: "cloudInfrastructure",
+          items: [
+            { labelKey: "cloudMigration", href: "/services/cloud-migration/cloud-migration" },
+            { labelKey: "awsServices", href: "/services/aws/aws" },
+            { labelKey: "azureServices", href: "/services/azure/azure" },
+            { labelKey: "googleCloud", href: "/services/gcp/gcp" },
+            { label: "DevOps", href: "/services/devops/devops" },
+          ]
+        },
+        {
+          titleKey: "security",
+          items: [
+            { labelKey: "cybersecurity", href: "/services/cybersecurity/cybersecurity" },
+            { labelKey: "penetrationTesting", href: "/services/penetration-testing/penetration-testing" },
+            { labelKey: "securityAudits", href: "/services/security-audits/security-audits" },
+            { labelKey: "dataProtection", href: "/services/data-protection/data-protection" },
+          ]
+        },
+        {
+          titleKey: "supportMaintenance",
+          items: [
+            { labelKey: "itSupport", href: "/services/it-support/it-support" },
+            { labelKey: "systemMaintenance", href: "/services/maintenance/maintenance" },
+            { labelKey: "helpDesk", href: "/services/help-desk/help-desk" },
+            { labelKey: "managedServices", href: "/services/managed-services/managed-services" },
+          ]
+        }
+      ]
+    },
+    {
+      id: "marketing",
+      labelKey: "marketing",
+      columns: [
+        {
+          titleKey: "digitalMarketing",
+          items: [
+            { labelKey: "seoServices", href: "/services/seo/seo" },
+            { labelKey: "ppcAdvertising", href: "/services/ppc/ppc" },
+            { labelKey: "socialMediaMarketing", href: "/services/social-media/social-media" },
+            { labelKey: "contentMarketing", href: "/services/content/content" },
+            { labelKey: "emailMarketing", href: "/services/email/email" },
+          ]
+        },
+        {
+          titleKey: "analyticsStrategy",
+          items: [
+            { labelKey: "marketingAnalytics", href: "/services/analytics/analytics" },
+            { labelKey: "marketingStrategy", href: "/services/strategy/strategy" },
+            { labelKey: "brandStrategy", href: "/services/brand-strategy/brand-strategy" },
+            { labelKey: "marketResearch", href: "/services/market-research/market-research" },
+          ]
+        }
+      ]
+    },
+    {
+      id: "design",
+      labelKey: "design",
+      columns: [
+        {
+          titleKey: "uiUxDesign",
+          items: [
+            { labelKey: "uiDesign", href: "/services/ui-design/ui-design" },
+            { labelKey: "uxDesign", href: "/services/ux-design/ux-design" },
+            { labelKey: "webDesign", href: "/services/web-design/web-design" },
+            { labelKey: "mobileAppDesign", href: "/services/mobile-design/mobile-design" },
+            { labelKey: "prototyping", href: "/services/prototyping/prototyping" },
+          ]
+        },
+        {
+          titleKey: "graphicDesign",
+          items: [
+            { labelKey: "logoDesign", href: "/services/logo-design/logo-design" },
+            { labelKey: "brandIdentity", href: "/services/brand-identity/brand-identity" },
+            { labelKey: "printDesign", href: "/services/print-design/print-design" },
+            { labelKey: "illustration", href: "/services/illustration/illustration" },
+          ]
+        }
+      ]
+    },
+    {
+      id: "business-services",
+      labelKey: "businessServices",
+      columns: [
+        {
+          titleKey: "consulting",
+          items: [
+            { labelKey: "businessConsulting", href: "/services/consulting/consulting" },
+            { labelKey: "itConsulting", href: "/services/it-consulting/it-consulting" },
+            { labelKey: "financialConsulting", href: "/services/financial-consulting/financial-consulting" },
+            { labelKey: "strategyConsulting", href: "/services/strategy-consulting/strategy-consulting" },
+          ]
+        },
+        {
+          titleKey: "operations",
+          items: [
+            { labelKey: "processOptimization", href: "/services/process-optimization/process-optimization" },
+            { labelKey: "supplyChain", href: "/services/supply-chain/supply-chain" },
+            { labelKey: "projectManagement", href: "/services/project-management/project-management" },
+            { labelKey: "qualityAssurance", href: "/services/qa/qa" },
+          ]
+        }
+      ]
+    },
+    {
+      id: "resources",
+      labelKey: "resources",
+      columns: [
+        {
+          titleKey: "learning",
+          items: [
+            { labelKey: "documentation", href: "/resources/documentation" },
+            { labelKey: "tutorials", href: "/resources/tutorials" },
+            { labelKey: "webinars", href: "/resources/webinars" },
+            { labelKey: "caseStudies", href: "/resources/case-studies" },
+          ]
+        },
+        {
+          titleKey: "tools",
+          items: [
+            { labelKey: "apiDocumentation", href: "/resources/api-docs" },
+            { labelKey: "sdks", href: "/resources/sdks" },
+            { labelKey: "templates", href: "/resources/templates" },
+            { labelKey: "integrations", href: "/resources/integrations" },
+          ]
+        }
+      ]
+    }
   ];
 
   // Navigation menu items
@@ -143,11 +387,11 @@ export default function Header() {
 
   const handleLanguageChange = (newLocale: string) => {
     setCookie("NEXT_LOCALE", newLocale);
-    
+
     // Tạo URL mới
     const currentPath = pathname.replace(/^\/(vi|en)/, "");
     const newPath = `/${newLocale}${currentPath || ""}`;
-    
+
     // Chuyển hướng
     router.push(newPath);
     router.refresh();
@@ -157,16 +401,15 @@ export default function Header() {
   return (
     <header className="w-full">
       {/* Top bar - Contact info and social */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div className="hidden md:block container mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex items-center justify-between">
           {/* Left side - Logo and tagline */}
           <Link href={getLocalizedPath("/")} className="flex items-center space-x-2">
             <div className="flex flex-col">
               <div className="flex items-center space-x-1">
-                <span className="text-2xl font-bold text-blue-600">Trade</span>
-                <span className="text-2xl font-bold text-gray-800">Hub</span>
+                <span className="text-2xl font-bold text-blue-600">B2B</span>
               </div>
-              <span className="text-xs text-gray-500  ">TradeHub</span>
+              <span className="text-xs text-gray-500  ">B2B Platform</span>
             </div>
           </Link>
 
@@ -207,11 +450,9 @@ export default function Header() {
                         <button
                           key={language.code}
                           onClick={() => handleLanguageChange(language.code)}
-                          className={`w-full flex items-center space-x-2 px-3 py-2 text-sm text-left hover:bg-gray-50 transition-colors ${
-                            currentLocale === language.code ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
-                          } ${language.code === languages[0].code ? 'rounded-t-md' : ''} ${
-                            language.code === languages[languages.length - 1].code ? 'rounded-b-md' : ''
-                          }`}
+                          className={`w-full flex items-center space-x-2 px-3 py-2 text-sm text-left hover:bg-gray-50 transition-colors ${currentLocale === language.code ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                            } ${language.code === languages[0].code ? 'rounded-t-md' : ''} ${language.code === languages[languages.length - 1].code ? 'rounded-b-md' : ''
+                            }`}
                         >
                           <span className="text-base">{language.flag}</span>
                           <span>{language.name}</span>
@@ -253,9 +494,55 @@ export default function Header() {
         </div>
       </div>
 
+      {/* Mobile Header - Logo and Icons */}
+      <div className="md:hidden border-b border-gray-200">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link href={getLocalizedPath("/")} className="flex items-center space-x-1">
+              <span className="text-xl font-bold text-blue-600">B2B</span>
+            </Link>
+
+            {/* Icons */}
+            <div className="flex items-center space-x-2">
+              {/* Notification - chỉ hiện khi đã đăng nhập */}
+              {!isCheckingAuth && isAuthenticated && user && (
+                <NotificationDropdown locale={currentLocale} />
+              )}
+
+              {/* Cart */}
+              <Link
+                href={getLocalizedPath("/cart")}
+                className="relative p-2 text-gray-700"
+              >
+                <FaShoppingCart className="w-5 h-5 text-blue-600" />
+                {cartItemsCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItemsCount > 9 ? "9+" : cartItemsCount}
+                  </span>
+                )}
+              </Link>
+
+              {/* Mobile menu button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-gray-700 hover:text-blue-600 rounded-md transition-colors"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <FaTimes className="w-6 h-6 text-blue-600" />
+                ) : (
+                  <FaBars className="w-6 h-6 text-blue-600" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Navigation bar */}
-      <nav className="w-full">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="w-full overflow-visible">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
           <div className="flex items-center justify-between h-14">
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-1">
@@ -268,11 +555,10 @@ export default function Header() {
                     >
                       <Link
                         href={getLocalizedPath(item.href)}
-                        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-1 ${
-                          isActive(item.href)
-                            ? "bg-blue-600 text-white"
-                            : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
-                        }`}
+                        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-1 ${isActive(item.href)
+                          ? "bg-blue-600 text-white"
+                          : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                          }`}
                       >
                         {item.label}
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -310,11 +596,10 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={getLocalizedPath(item.href)}
-                    className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                      isActive(item.href)
-                        ? "bg-blue-600 text-white"
-                        : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
-                    }`}
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${isActive(item.href)
+                      ? "bg-blue-600 text-white"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                      }`}
                   >
                     {item.label}
                   </Link>
@@ -323,9 +608,9 @@ export default function Header() {
             </div>
 
             {/* Right side - Cart and User */}
-            <div className="flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-4">
               {/* Shopping Cart with Dropdown */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => setIsCartHover(true)}
                 onMouseLeave={() => setIsCartHover(false)}
@@ -351,95 +636,153 @@ export default function Header() {
                 {isCartHover && (
                   <div className="absolute right-0 top-full pt-2 w-80 bg-transparent z-50">
                     <div className="bg-white border border-gray-200 rounded-lg shadow-xl">
-                    <div className="p-4 border-b border-gray-200">
-                      <h3 className="font-semibold text-gray-800">{t("cart")}</h3>
-                    </div>
-                    <div className="max-h-96 overflow-y-auto">
-                      {cartItems.length === 0 ? (
-                        <div className="p-8 text-center text-gray-500">
-                          <FaShoppingCart className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-                          <p className="text-sm">{t("emptyCart")}</p>
-                        </div>
-                      ) : (
-                        <div className="divide-y divide-gray-200">
-                          {cartItems.slice(0, 3).map((item) => (
-                            <div key={item.id} className="p-4 hover:bg-gray-50 transition-colors">
-                              <div className="flex items-center space-x-3">
-                                <div className="w-16 h-16 bg-gray-200 rounded-md flex items-center justify-center shrink-0">
-                                  {item.image ? (
-                                    <div 
-                                      className="w-full h-full bg-cover bg-center rounded-md" 
-                                      style={{ backgroundImage: `url(${item.image})` }}
-                                    />
-                                  ) : (
-                                    <span className="text-gray-400 text-xs">IMG</span>
-                                  )}
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <h4 className="text-sm font-medium text-gray-800 truncate">{item.name}</h4>
-                                  <p className="text-xs text-gray-500 mt-1">
-                                    {t("quantity")}: {item.quantity}
-                                  </p>
-                                  <p className="text-sm font-semibold text-blue-600 mt-1">
-                                    ${item.price.toFixed(2)}
-                                  </p>
+                      <div className="p-4 border-b border-gray-200">
+                        <h3 className="font-semibold text-gray-800">{t("cart")}</h3>
+                      </div>
+                      <div className="max-h-96 overflow-y-auto">
+                        {cartItems.length === 0 ? (
+                          <div className="p-8 text-center text-gray-500">
+                            <FaShoppingCart className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+                            <p className="text-sm">{t("emptyCart")}</p>
+                          </div>
+                        ) : (
+                          <div className="divide-y divide-gray-200">
+                            {cartItems.slice(0, 3).map((item) => (
+                              <div key={item.id} className="p-4 hover:bg-gray-50 transition-colors">
+                                <div className="flex items-center space-x-3">
+                                  <div className="w-16 h-16 bg-gray-200 rounded-md flex items-center justify-center shrink-0">
+                                    {item.image ? (
+                                      <div
+                                        className="w-full h-full bg-cover bg-center rounded-md"
+                                        style={{ backgroundImage: `url(${item.image})` }}
+                                      />
+                                    ) : (
+                                      <span className="text-gray-400 text-xs">IMG</span>
+                                    )}
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <h4 className="text-sm font-medium text-gray-800 truncate">{item.name}</h4>
+                                    <p className="text-xs text-gray-500 mt-1">
+                                      {t("quantity")}: {item.quantity}
+                                    </p>
+                                    <p className="text-sm font-semibold text-blue-600 mt-1">
+                                      ${item.price.toFixed(2)}
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      {cartItems.length > 0 && (
+                        <div className="p-4 border-t border-gray-200 bg-gray-50">
+                          <Link
+                            href={getLocalizedPath("/cart")}
+                            className="block w-full text-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"
+                          >
+                            {t("viewCart")}
+                          </Link>
                         </div>
                       )}
-                    </div>
-                    {cartItems.length > 0 && (
-                      <div className="p-4 border-t border-gray-200 bg-gray-50">
-                        <Link
-                          href={getLocalizedPath("/cart")}
-                          className="block w-full text-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"
-                        >
-                          {t("viewCart")}
-                        </Link>
-                      </div>
-                    )}
                     </div>
                   </div>
                 )}
               </div>
 
+              {/* Notification Dropdown - chỉ hiện khi đã đăng nhập */}
+              {!isCheckingAuth && isAuthenticated && user && (
+                <NotificationDropdown locale={currentLocale} />
+              )}
+
               {/* User Menu / Login */}
-              {isLoggedIn ? (
+              {!isCheckingAuth && isAuthenticated && user ? (
                 <div className="relative">
                   <button
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                    className="flex items-center space-x-2 p-2 text-gray-700 hover:text-blue-600 transition-colors"
+                    className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors rounded-lg hover:bg-gray-50 cursor-pointer"
                   >
-                    <FaUser className="w-5 h-5 text-blue-600" />
+                    <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold text-sm shrink-0">
+                      {user.fullName ? (
+                        user.fullName.charAt(0).toUpperCase()
+                      ) : user.email ? (
+                        user.email.charAt(0).toUpperCase()
+                      ) : (
+                        <FaUser className="w-4 h-4" />
+                      )}
+                    </div>
+                    <span className="hidden md:block text-sm font-medium max-w-[120px] truncate">
+                      {user.fullName || user.email || user.companyName}
+                    </span>
+                    <FaChevronDown className={`w-3 h-3 transition-transform ${isUserMenuOpen ? 'rotate-180' : ''}`} />
                   </button>
 
                   {isUserMenuOpen && (
                     <>
-                      <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
-                        <Link
-                          href={getLocalizedPath("/profile")}
-                          onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md transition-colors"
-                        >
-                          {t("profile")}
-                        </Link>
-                        <Link
-                          href={getLocalizedPath("/orders")}
-                          onClick={() => setIsUserMenuOpen(false)}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                        >
-                          {t("orders")}
-                        </Link>
+                      <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden">
+                        {/* User Info */}
+                        <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
+                          <div className="font-semibold text-sm text-gray-900 truncate">
+                            {user.fullName || user.email || user.companyName}
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1 truncate">
+                            {user.email}
+                          </div>
+                          {user.companyName && (
+                            <div className="text-xs text-gray-500 mt-1 truncate">
+                              {user.companyName}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Menu Items */}
+                        <div className="py-1">
+                          <Link
+                            href={getLocalizedPath("/profile")}
+                            onClick={() => setIsUserMenuOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+                          >
+                            <FaUser className="w-4 h-4 text-gray-400" />
+                            {t("profile")}
+                          </Link>
+                          <Link
+                            href={getLocalizedPath("/orders")}
+                            onClick={() => setIsUserMenuOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+                          >
+                            <FaShoppingCart className="w-4 h-4 text-gray-400" />
+                            {t("orders")}
+                          </Link>
+                          <Link
+                            href={getLocalizedPath(getDashboardPathByUserType(user.userType))}
+                            onClick={() => setIsUserMenuOpen(false)}
+                            target={user.userType === "admin" || user.userType === "business" ? "_blank" : undefined}
+                            rel={user.userType === "admin" || user.userType === "business" ? "noopener noreferrer" : undefined}
+                            className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+                          >
+                            <FaUser className="w-4 h-4 text-gray-400" />
+                            Profile
+                          </Link>
+                        </div>
+
+                        {/* Logout */}
                         <div className="border-t border-gray-200">
                           <button
-                            onClick={() => {
+                            onClick={async () => {
                               setIsUserMenuOpen(false);
-                              // Handle logout
+                              try {
+                                // Call logout API (direct to backend via custom client)
+                                await logoutApi();
+                              } catch (error) {
+                                console.error("Logout API error:", error);
+                              }
+                              // Clear local state
+                              logout();
+                              router.push(getLocalizedPath("/auth/login"));
                             }}
-                            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-b-md transition-colors"
+                            className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
                           >
+                            <FaSignOutAlt className="w-4 h-4" />
                             {t("logout")}
                           </button>
                         </div>
@@ -452,14 +795,14 @@ export default function Header() {
                     </>
                   )}
                 </div>
-              ) : (
+              ) : !isCheckingAuth ? (
                 <Link
                   href={getLocalizedPath("/auth/login")}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors border border-blue-400 rounded-md"
+                  className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors border border-blue-400 rounded-md cursor-pointer"
                 >
                   {t("login")}
                 </Link>
-              )}
+              ) : null}
 
               {/* Mobile menu button */}
               <button
@@ -484,16 +827,15 @@ export default function Header() {
                   key={item.href}
                   href={getLocalizedPath(item.href)}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    isActive(item.href)
-                      ? "bg-blue-600 text-white"
-                      : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
-                  }`}
+                  className={`block px-4 py-2 text-sm font-medium rounded-md transition-colors ${isActive(item.href)
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
+                    }`}
                 >
                   {item.label}
                 </Link>
               ))}
-              {/* Mobile Cart and Login */}
+              {/* Mobile Cart and User/Login */}
               <div className="border-t border-gray-200 mt-2 pt-2">
                 <Link
                   href={getLocalizedPath("/cart")}
@@ -508,21 +850,264 @@ export default function Header() {
                     </span>
                   )}
                 </Link>
-                {!isLoggedIn && (
+                {!isCheckingAuth && isAuthenticated && user ? (
+                  <>
+                    <div className="px-4 py-2 border-b border-gray-200">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold text-sm">
+                          {user.fullName ? (
+                            user.fullName.charAt(0).toUpperCase()
+                          ) : user.email ? (
+                            user.email.charAt(0).toUpperCase()
+                          ) : (
+                            <FaUser className="w-4 h-4" />
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium text-gray-900 truncate">
+                            {user.fullName || user.email || user.companyName}
+                          </div>
+                          <div className="text-xs text-gray-500 truncate">
+                            {user.email}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <Link
+                      href={getLocalizedPath("/profile")}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md transition-colors"
+                    >
+                      {t("profile")}
+                    </Link>
+                    <Link
+                      href={getLocalizedPath("/orders")}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md transition-colors"
+                    >
+                      {t("orders")}
+                    </Link>
+                    <Link
+                      href={getLocalizedPath(getDashboardPathByUserType(user.userType))}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      target={user.userType === "admin" || user.userType === "business" ? "_blank" : undefined}
+                      rel={user.userType === "admin" || user.userType === "business" ? "noopener noreferrer" : undefined}
+                      className="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md transition-colors"
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={async () => {
+                        setIsMobileMenuOpen(false);
+                        try {
+                          // Call logout API (direct to backend via custom client)
+                          await logoutApi();
+                        } catch (error) {
+                          console.error("Logout API error:", error);
+                        }
+                        // Clear local state
+                        logout();
+                        router.push(getLocalizedPath("/auth/login"));
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors"
+                    >
+                      {t("logout")}
+                    </button>
+                  </>
+                ) : !isCheckingAuth ? (
                   <Link
-                    href={getLocalizedPath("/login")}
+                    href={getLocalizedPath("/auth/login")}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md transition-colors"
                   >
                     {t("login")}
                   </Link>
-                )}
+                ) : null}
               </div>
             </div>
           )}
         </div>
       </nav>
+
+      {/* Footer Navbar - Mega Menu (Desktop) */}
+      <div className="hidden md:block w-full bg-white border-t border-gray-200 relative overflow-visible">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-start space-x-1 h-12 overflow-visible">
+            {footerNavItems.map((item) => (
+              <div
+                key={item.id}
+                className="relative overflow-visible"
+              >
+                <button
+                  onClick={() => {
+                    // Toggle: nếu đang mở thì đóng, nếu đóng thì mở
+                    setClickedFooterNav(clickedFooterNav === item.id ? null : item.id);
+                  }}
+                  className={`px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1 h-full cursor-pointer ${
+                    clickedFooterNav === item.id
+                      ? "text-blue-600 border-b-2 border-blue-600"
+                      : "text-gray-700 hover:text-blue-600"
+                  }`}
+                >
+                  {tFooterNav(item.labelKey)}
+                  <svg
+                    className={`w-3 h-3 transition-transform ${
+                      clickedFooterNav === item.id ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {/* Mega Dropdown Menu */}
+                {clickedFooterNav === item.id && (
+                  <>
+                    {/* Overlay để đóng menu khi click bên ngoài */}
+                    <div
+                      className="fixed inset-0 z-40"
+                      onClick={() => setClickedFooterNav(null)}
+                    />
+                    <div 
+                      className="absolute top-full left-0 pt-2 w-[calc(100vw-2rem)] max-w-6xl bg-transparent z-50"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {/* Dropdown content */}
+                      <div className="bg-white border border-gray-200 rounded-lg shadow-2xl">
+                        <div className="p-6">
+                          <div className={`grid gap-6 ${
+                            item.columns.length === 6 ? 'grid-cols-6' :
+                            item.columns.length === 5 ? 'grid-cols-5' :
+                            item.columns.length === 4 ? 'grid-cols-4' :
+                            item.columns.length === 3 ? 'grid-cols-3' :
+                            item.columns.length === 2 ? 'grid-cols-2' :
+                            'grid-cols-1'
+                          }`}>
+                            {item.columns.map((column, colIndex) => (
+                              <div key={colIndex} className="min-w-0">
+                                <h3 className="text-sm font-semibold text-gray-900 mb-3 whitespace-nowrap">
+                                  {tFooterNav(`columns.${column.titleKey}`)}
+                                </h3>
+                                <ul className="space-y-2">
+                                  {column.items.map((subItem, subIndex) => (
+                                    <li key={subIndex}>
+                                      <Link
+                                        href={getLocalizedPath(subItem.href)}
+                                        className="block text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-2 py-1.5 rounded-md transition-colors whitespace-nowrap cursor-pointer"
+                                        onClick={() => setClickedFooterNav(null)}
+                                      >
+                                        {"labelKey" in subItem
+                                          ? tFooterNav(`items.${subItem.labelKey}`)
+                                          : subItem.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="border-t border-gray-200 mt-6 pt-4">
+                            <Link
+                              href={getLocalizedPath(`/services/${item.id}`)}
+                              className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors cursor-pointer"
+                              onClick={() => setClickedFooterNav(null)}
+                            >
+                              {tFooterNav("viewMore", { label: tFooterNav(item.labelKey) })}
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Navbar - Mobile Accordion */}
+      <div className="md:hidden w-full bg-white border-t border-gray-200">
+        <div className="container mx-auto px-4">
+          <div className="py-2">
+            {footerNavItems.map((item) => (
+              <div key={item.id} className="border-b border-gray-100 last:border-b-0">
+                <button
+                  onClick={() => {
+                    setExpandedMobileFooterNav(
+                      expandedMobileFooterNav === item.id ? null : item.id
+                    );
+                  }}
+                  className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors cursor-pointer"
+                >
+                  <span>{tFooterNav(item.labelKey)}</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform ${
+                      expandedMobileFooterNav === item.id ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {/* Mobile Accordion Content */}
+                {expandedMobileFooterNav === item.id && (
+                  <div className="px-4 pb-4 bg-gray-50">
+                    <div className="space-y-4 pt-2">
+                      {item.columns.map((column, colIndex) => (
+                        <div key={colIndex}>
+                          <h4 className="text-xs font-semibold text-gray-900 mb-2 uppercase tracking-wide">
+                            {tFooterNav(`columns.${column.titleKey}`)}
+                          </h4>
+                          <ul className="space-y-1">
+                            {column.items.map((subItem, subIndex) => (
+                              <li key={subIndex}>
+                                <Link
+                                  href={getLocalizedPath(subItem.href)}
+                                  className="block text-sm text-gray-600 hover:text-blue-600 hover:bg-white px-3 py-2 rounded-md transition-colors cursor-pointer"
+                                  onClick={() => setExpandedMobileFooterNav(null)}
+                                >
+                                  {"labelKey" in subItem
+                                    ? tFooterNav(`items.${subItem.labelKey}`)
+                                    : subItem.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                      <div className="pt-2 border-t border-gray-200">
+                        <Link
+                          href={getLocalizedPath(`/services/${item.id}`)}
+                          className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors cursor-pointer"
+                          onClick={() => setExpandedMobileFooterNav(null)}
+                        >
+                          {tFooterNav("viewMore", { label: tFooterNav(item.labelKey) })}
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </header>
   );
 }
-    
